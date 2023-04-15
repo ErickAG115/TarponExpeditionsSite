@@ -10,7 +10,7 @@ export function Login() {
                     <img src={require('./TarponLogo.png')} alt={'tarpon logo'} style={{height:'50%',width:'50%'}}/>
                 </div>
                 <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                    <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
                         <label style={{fontFamily: 'Rosario', fontSize: '30px', fontWeight:'bold', marginBottom:'40px'}}>Sign In</label>
 
                         <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-55px'}}>Email Address</label>
