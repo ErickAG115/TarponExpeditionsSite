@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { Login } from "./components/website/Login";
 import { Register } from "./components/website/Register";
+import { ClientMenu } from "./components/client/ClientMenu";
+import { AdminMenu } from "./components/admin/AdminMenu";
+import { RegisterEmployee } from "./components/admin/RegisterEmployee";
 
 export function App() {
   return (
@@ -11,6 +14,9 @@ export function App() {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/Register" element={<Register />} />
+          <Route exact path="/ClientMenu" element={<ClientMenu />} />
+          <Route exact path="/AdminMenu" element={<AdminMenu />} />
+          <Route exact path="/RegisterEmployee" element={<RegisterEmployee />} />
         </Routes>
       </div>
     </Router>

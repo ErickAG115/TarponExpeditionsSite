@@ -14,10 +14,10 @@ export function Login() {
                         <label style={{fontFamily: 'Rosario', fontSize: '30px', fontWeight:'bold', marginBottom:'40px'}}>Sign In</label>
 
                         <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-55px'}}>Email Address</label>
-                        <input type="text" id="input1" style={{ borderRadius: '5px', width:'45%', marginBottom:'20px'}} />
+                        <input type="text" id="Email" style={{ borderRadius: '5px', width:'45%', marginBottom:'20px'}} />
 
                         <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-75px'}}>Password</label>
-                        <input type="text" id="input2" style={{ borderRadius: '5px', width:'45%'}} />
+                        <input type="text" id="Password" style={{ borderRadius: '5px', width:'45%'}} />
                         <button style={{color: 'blue', fontFamily: 'Rosario', fontSize: '15px', position: 'relative', left: '-60px', marginBottom:'20px', border: 'none'}}>Forgot Password?</button>
 
                     <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
