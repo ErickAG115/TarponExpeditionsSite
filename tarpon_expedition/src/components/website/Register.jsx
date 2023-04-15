@@ -25,12 +25,12 @@ export function Register() {
                         <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-147px'}}>Date of Birth</label>
                         <input type="date" id="Date of Birth" style={{height:'7%', borderRadius: '5px', width:'78%', marginBottom:'20px', position: 'relative'}} />
                         <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                            <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-85px'}}>Password</label>
+                            <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative', left: '-86px'}}>Password</label>
                             <label style={{fontFamily: 'Rosario', fontSize: '20px', position: 'relative',left: '47px'}}>Confirm Password</label>
                         </div>
                         <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                            <input type="text" id="Password" style={{ borderRadius: '5px', marginRight:'10px'}} />
-                            <input type="text" id="Confirm Password" style={{ borderRadius: '5px', marginLeft:'10px'}} />
+                            <input type="text" id="Password" style={{ borderRadius: '5px', marginRight:'11.5px'}} />
+                            <input type="text" id="Confirm Password" style={{ borderRadius: '5px', marginLeft:'11.5px'}} />
                         </div>
 
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>

@@ -20,10 +20,10 @@ export function Login() {
                         <input type="text" id="Password" style={{ borderRadius: '5px', width:'45%'}} />
                         <button style={{color: 'blue', fontFamily: 'Rosario', fontSize: '15px', position: 'relative', left: '-60px', marginBottom:'20px', border: 'none'}}>Forgot Password?</button>
 
-                    <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                        <button style={{width:'30%', fontSize: '20px', fontFamily: 'Rosario', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Sign In</button>
-                        <button style={{width:'30%', fontSize: '20px', fontFamily: 'Rosario', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Sign Up</button>
-                    </div>
+                        <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
+                            <button style={{width:'30%', fontSize: '20px', fontFamily: 'Rosario', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Sign In</button>
+                            <button style={{width:'30%', fontSize: '20px', fontFamily: 'Rosario', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Sign Up</button>
+                        </div>
                     </div>
                 </div>
             </div>
