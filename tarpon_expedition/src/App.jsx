@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { MainPage } from "./components/website/MainPage";
 import { Login } from "./components/website/Login";
 import { Register } from "./components/website/Register";
 import { ClientMenu } from "./components/client/ClientMenu";
@@ -12,7 +13,8 @@ export function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<MainPage />} />
+          <Route exact path="/Login" element={<Login />} />
           <Route exact path="/Register" element={<Register />} />
           <Route exact path="/ClientMenu" element={<ClientMenu />} />
           <Route exact path="/AdminMenu" element={<AdminMenu />} />
