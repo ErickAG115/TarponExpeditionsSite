@@ -8,6 +8,9 @@ import { Contact } from "./components/website/Contact";
 import { ClientMenu } from "./components/client/ClientMenu";
 import { AdminMenu } from "./components/admin/AdminMenu";
 import { RegisterEmployee } from "./components/admin/RegisterEmployee";
+import { CreateTour } from "./components/admin/CreateTour";
+import { ModifyTour } from "./components/admin/ModifyTour";
+
 
 export function App() {
   return (
@@ -21,6 +24,8 @@ export function App() {
           <Route exact path="/RegisterEmployee" element={<RegisterEmployee />} />
           <Route exact path="/AboutUs" element={<AboutUs />} />
           <Route exact path="/Contact" element={<Contact />} />
+          <Route exact path="/CreateTour" element={<CreateTour />} />
+          <Route exact path="/ModifyTour" element={<ModifyTour />} />
         </Routes>
       </div>
     </Router>
