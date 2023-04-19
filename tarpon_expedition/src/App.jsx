@@ -7,6 +7,7 @@ import { Register } from "./components/website/Register";
 import { ClientMenu } from "./components/client/ClientMenu";
 import { AdminMenu } from "./components/admin/AdminMenu";
 import { RegisterEmployee } from "./components/admin/RegisterEmployee";
+import { Tours } from "./components/client/Tours";
 
 export function App() {
   return (
@@ -19,6 +20,7 @@ export function App() {
           <Route exact path="/ClientMenu" element={<ClientMenu />} />
           <Route exact path="/AdminMenu" element={<AdminMenu />} />
           <Route exact path="/RegisterEmployee" element={<RegisterEmployee />} />
+          <Route exact path="/Tours" element={<Tours />} />
         </Routes>
       </div>
     </Router>

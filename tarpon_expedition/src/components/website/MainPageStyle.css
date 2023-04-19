@@ -73,7 +73,7 @@
     font-family: lato;
 }
 .btn:hover{
-    color :#000000
+    color :#ffffff
 }
 .btn::before{
     content: "";
