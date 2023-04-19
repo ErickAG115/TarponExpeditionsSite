@@ -4,6 +4,8 @@ import { v4 as uuid } from "uuid";
 import { MainPage } from "./components/website/MainPage";
 import { Login } from "./components/website/Login";
 import { Register } from "./components/website/Register";
+import { AboutUs } from "./components/website/AboutUs";
+import { Contact } from "./components/website/Contact";
 import { ClientMenu } from "./components/client/ClientMenu";
 import { AdminMenu } from "./components/admin/AdminMenu";
 import { RegisterEmployee } from "./components/admin/RegisterEmployee";
@@ -21,6 +23,8 @@ export function App() {
           <Route exact path="/AdminMenu" element={<AdminMenu />} />
           <Route exact path="/RegisterEmployee" element={<RegisterEmployee />} />
           <Route exact path="/Tours" element={<Tours />} />
+          <Route exact path="/AboutUs" element={<AboutUs />} />
+          <Route exact path="/Contact" element={<Contact />} />
         </Routes>
       </div>
     </Router>
