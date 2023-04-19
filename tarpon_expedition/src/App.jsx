@@ -10,6 +10,8 @@ import { ClientMenu } from "./components/client/ClientMenu";
 import { AdminMenu } from "./components/admin/AdminMenu";
 import { RegisterEmployee } from "./components/admin/RegisterEmployee";
 import { Tours } from "./components/client/Tours";
+import { ReservationDate } from "./components/client/ReservationDate";
+import { ReservationCompanions } from "./components/client/ReservationCompanions";
 import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
 
@@ -30,6 +32,8 @@ export function App() {
           <Route exact path="/Contact" element={<Contact />} />
           <Route exact path="/CreateTour" element={<CreateTour />} />
           <Route exact path="/ModifyTour" element={<ModifyTour />} />
+          <Route exact path="/ReservationDate" element={<ReservationDate />} />
+          <Route exact path="/ReservationCompanions" element={<ReservationCompanions />} />
         </Routes>
       </div>
     </Router>
