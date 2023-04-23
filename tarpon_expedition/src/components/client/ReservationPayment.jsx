@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
+import { db } from "../../firebase";
+import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
 
 export function ReservationPayment() {
     return (
