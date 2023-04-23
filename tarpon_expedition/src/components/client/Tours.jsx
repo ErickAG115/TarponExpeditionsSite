@@ -13,8 +13,8 @@ export function Tours() {
         navigate('/Tours',{});
     }
 
-    const handleSignIn = () =>{
-        navigate('/Register',{});
+    const handleLogin = () =>{
+        navigate('/Login',{});
     }
 
     const handleMyAccount = () =>{
@@ -44,7 +44,7 @@ export function Tours() {
                             <li><a onClick={handleTour}> Tours </a></li>
                             <li><a onClick={handleTour}> About </a></li>
                             <li><a onClick={handleTour}> Contact </a></li>
-                            <li><a onClick={handleSignIn}> SIGN IN </a></li>
+                            <li><a onClick={handleLogin}> LOGIN </a></li>
                             <li><a onClick={handleMyAccount}>MY ACCOUNT</a></li>
                         </ul>
                 </div>

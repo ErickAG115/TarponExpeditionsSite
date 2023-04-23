@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: lato;
+
+}
+
+.navbarAbout{
+    width: 85%;
+    margin: auto;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 120px;
+    cursor: pointer;
+}
+.navbarAbout ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbarAbout ul li a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.navbarAbout ul li::after{
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #000000;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: 0.5s;
+}
+.navbarAbout ul li:hover::after{
+    width: 100%;
+}
