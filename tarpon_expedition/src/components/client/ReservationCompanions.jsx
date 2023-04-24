@@ -1,16 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function ReservationCompanions() {
     const [adults, setAdults] = useState(0);
     const [seniors, setSeniors] = useState(0);
     const [children, setChildren] = useState(0);
-    const [total, setTotal] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
     const price = 100;
     const childPrice = price*(75/100);
     const seniorPrice = price*(50/100);
+
+    const location = useLocation();
+    const datePicked = location.state.date;
+    const packagePicked = location.state.package;
+    const schedule = location.state.schedule;
+    const tour = location.state.tour;
+    const navigate = useNavigate();
 
     useEffect(() => {
         setAdults(0);
@@ -25,11 +31,12 @@ export function ReservationCompanions() {
       }, []);
 
       useEffect(() => {
-        setTotal(1);
-      }, []);
-      useEffect(() => {
         setTotalPrice(price);
       }, []);
+
+    const goToPayments = () => {
+        navigate('/ReservationPayment',{state: {date: datePicked, pacakge: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}});
+    }
 
     const addAdult  = async () => {
         const newAdults = adults+1;
@@ -93,7 +100,7 @@ export function ReservationCompanions() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '60%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'30px', position:'relative', top:'10px'}}>Adding Companions</label>
+                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'30px', position:'relative', top:'10px'}}>Adding Extra Companions</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', position: 'relative'}}>
                             <button style={{width:'6.5%', height:'40%', fontSize: '30px', fontFamily: 'lato', backgroundColor:'white', color: '#FF5B15', borderRadius: '100%', marginRight:'10px', position: 'relative', fontWeight:'bold'}} onClick={() => subtractAdult()}>-</button>
                             <label style={{width:'2.5%', height:'40%', fontFamily: 'lato', fontSize: '20px', position: 'relative', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>{adults}</label>
@@ -124,7 +131,7 @@ export function ReservationCompanions() {
                         <label style={{fontFamily: 'lato', fontSize: '20px', fontWeight:'bold'}}>Total price: ${totalPrice}</label> 
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Next</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goToPayments()}>Next</button>
                         </div>
                     </div>
                 </div>

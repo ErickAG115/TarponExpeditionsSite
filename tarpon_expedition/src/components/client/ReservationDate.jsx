@@ -19,7 +19,7 @@ export function ReservationDate() {
     const tour = '5BobrfcDwVxuyLiG7Gxf';
 
     const goToCompanions = () => {
-         navigate('/ReservationCompanions',{state: {date: datePicked, pacakge: packagePicked, schedule: schedulePicked}});
+         navigate('/ReservationCompanions',{state: {date: datePicked, pacakge: packagePicked, schedule: schedulePicked, tour: tour}});
     }
 
     const navigateTours = () => {
@@ -45,7 +45,6 @@ export function ReservationDate() {
         const schedules = data.docs
           .map((doc) => ({ ...doc.data(), id: doc.id }));
         setSchedules(schedules);
-        console.log('aaaa')
     };
     useEffect(() => {
         getSchedules(); 
@@ -97,7 +96,7 @@ export function ReservationDate() {
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => {navigateTours()}}>Back</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Next</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => {goToCompanions()}}>Next</button>
                         </div>
                     </div>
                 </div>
