@@ -18,9 +18,8 @@ export function ReservationDate() {
     //const tour = location.state.tour;
     const tour = '5BobrfcDwVxuyLiG7Gxf';
 
-    const changePackage = async (e) => {
-        e.preventDefault();
-        setPackagePicked(e.target.value);
+    const goToCompanions = () => {
+         navigate('/ReservationCompanions',{state: {date: datePicked, pacakge: packagePicked, schedule: schedulePicked}});
     }
 
     const navigateTours = () => {
@@ -93,8 +92,8 @@ export function ReservationDate() {
                         </div>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Choose a package</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', position: 'relative', top: '-20px'}}>
-                            <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px', position: 'relative', top: '10px'}}>Standard</button>
-                            <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px', position: 'relative', top: '10px'}}>Premium</button>
+                            <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px', position: 'relative', top: '10px'}} onClick={() => setPackagePicked('Standard')} >Standard</button>
+                            <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px', position: 'relative', top: '10px'}} onClick={() => setPackagePicked('Premium')}>Premium</button>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => {navigateTours()}}>Back</button>
