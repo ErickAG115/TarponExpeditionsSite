@@ -5,6 +5,23 @@ import "./TourPageStyle.css";
 
 export function Tours() {
     const navigate = useNavigate();
+    
+
+    const [tourImages, setTourImages] = useState([]);
+
+    const handleAddTourImage = (e) => {
+        e.preventDefault();
+        const url = e.target.elements.url.value;
+        setTourImages([...tourImages, url]);
+        e.target.elements.url.value = "";
+
+        {tourImages.map((image, index) => (console.log("aqui",image)))};
+    }
+
+
+
+
+
     const handleHome = () =>{
         navigate('/',{});
     }
@@ -23,20 +40,9 @@ export function Tours() {
         navigate('/ClientMenu',{});
     }
 
-    const [tourImages, setTourImages] = useState([]);
-
-    const handleAddTourImage = (e) => {
-        e.preventDefault();
-        const url = e.target.elements.url.value;
-        setTourImages([...tourImages, url]);
-        e.target.elements.url.value = "";
-
-        {tourImages.map((image, index) => (console.log("aqui",image)))};
-    }
-
     return (
         <Fragment>
-            <div style={{backgroundColor: '#D2D7DB', height: '100vh',}}>
+            <div style={{minHeight: '100vh',  backgroundColor: '#D2D7DB', paddingBottom:'10%'}}>
                 <div class='navbarTour'>
                     <img src={require('./hostia.png')} class = 'logo'/>
                         <ul>
@@ -64,7 +70,7 @@ export function Tours() {
                                     <h1>Tour De la Hostia</h1>
                                     <p>Este tour es de pesca deportiva, aqui va toda la descripicion general del tour</p>
                                     <p>Price: 200$</p>
-                                    <button class='btnT btnT1' onClick={handleHome}>BOOK NOW</button>
+                                    <button onClick={handleHome} class='btnT btnT1'>BOOK NOW</button>
                                 </div>
                             </div>
                         </div>
