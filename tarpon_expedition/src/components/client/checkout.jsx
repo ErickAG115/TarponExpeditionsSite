@@ -69,7 +69,7 @@ export function Checkout() {
             children: children,
             deleted: false,
             end: dateEnd,
-            star: dateStart
+            start: dateStart
 
         };
         console.log(data);

@@ -33,18 +33,22 @@ export function ReservationDate() {
             console.log('adentro');
             handleDate(dateChosen);
         }
+        else{
+            handleDate('01/01/2023');
+        }
       }, [dateChosen]);
 
     //const tour = location.state.tour;
     //const tour = 'tour name';
 
     const goToCompanions = () => {
-         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tour, totalPrice: parseInt('100'), adults: 0, seniors: 0, children: 0, price:parseInt('100')}});
+         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tour, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price)}});
     }
 
     const navigateTours = () => {
         navigate('/Tours',{});
     };
+    
 
     const getTours = async () => {
         const data = await getDocs(toursCollectionRef);
