@@ -54,7 +54,7 @@ export function Register() {
             console.log('Successful Sign Up');
             navigate('/Login',{});
         }
-        console.log('Sign Up failed');
+        //console.log('Sign Up failed');
     }
 
     const handleHome = () =>{

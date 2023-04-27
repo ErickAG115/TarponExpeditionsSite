@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TourPageStyle.css";
+import { db } from "../../firebase";
+import { addDoc, collection, getDocs, where, query  } from "firebase/firestore";
 
 export function Tours() {
     const navigate = useNavigate();
@@ -9,17 +11,21 @@ export function Tours() {
 
     const [tourImages, setTourImages] = useState([]);
 
-    const handleAddTourImage = (e) => {
-        e.preventDefault();
-        const url = e.target.elements.url.value;
-        setTourImages([...tourImages, url]);
-        e.target.elements.url.value = "";
+    const [tours, setTours] = useState([]);
+    const toursCollectionRef = collection(db, "Tours");
 
-        {tourImages.map((image, index) => (console.log("aqui",image)))};
-    }
-
-
-
+    useEffect(() => {
+        const getTours = async () => {
+            const q = query(collection(db, "Tours"), where("Deleted", "==", false));
+            const querySnapshot = await getDocs(q);
+            const tours = [];
+            querySnapshot.forEach((doc) => {
+                tours.push({ ...doc.data(), id: doc.id });
+            });
+      setTours(tours);
+    };
+        getTours();
+    }, []);
 
 
     const handleHome = () =>{
@@ -46,30 +52,28 @@ export function Tours() {
                 <div class='navbarTour'>
                     <img src={require('./hostia.png')} class = 'logo'/>
                         <ul>
-                            <li><a onClick={handleHome}> Home </a></li>
-                            <li><a onClick={handleTour}> Tours </a></li>
-                            <li><a onClick={handleTour}> About </a></li>
-                            <li><a onClick={handleTour}> Contact </a></li>
-                            <li><a onClick={handleLogin}> LOGIN </a></li>
-                            <li><a onClick={handleMyAccount}>MY ACCOUNT</a></li>
+                            <li><button onClick={handleHome}> Home </button></li>
+                            <li><button onClick={handleTour}> Tours </button></li>
+                            <li><button onClick={handleTour}> About </button></li>
+                            <li><button onClick={handleTour}> Contact </button></li>
+                            <li><button onClick={handleLogin}> LOGIN </button></li>
+                            <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                         </ul>
                 </div>
                 <h1 class='tourHeader'>TOURS</h1>
-                <form onSubmit={handleAddTourImage}>
-                    <input type="text" name="url" placeholder="Enter image URL" />
-                    <button type="submit">Add Image</button>
-                </form>
                 <div class='img-gallery'>
-                    {tourImages.map((image, index) => (
-                        <div class='flip-card' key={index}>
+                    {tours.map((tours) => (
+                        <div class='flip-card'>
                             <div class='flip-card-inner'>
                                 <div class='flip-card-front'>
-                                    <img src={require('./imagesTours/' + image)} />
+                                    <img src={tours.Image} />
                                 </div>
                                 <div class='flip-card-back'>
-                                    <h1>Tour De la Hostia</h1>
-                                    <p>Este tour es de pesca deportiva, aqui va toda la descripicion general del tour</p>
-                                    <p>Price: 200$</p>
+                                    <h1>{tours.Name}</h1>
+                                    <h2 style={{fontSize: '20px'}}>Type: {tours.Type}</h2>
+                                    <h2 style={{fontSize: '20px'}}>Place: {tours.Place}</h2>
+                                    <p>{tours.Desc}</p>
+                                    <h2 style={{fontSize: '20px'}}>Price: ${tours.Price}</h2>
                                     <button onClick={handleHome} class='btnT btnT1'>BOOK NOW</button>
                                 </div>
                             </div>

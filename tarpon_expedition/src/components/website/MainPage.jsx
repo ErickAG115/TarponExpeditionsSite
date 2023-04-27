@@ -11,7 +11,7 @@ export function MainPage() {
     }
 
     const handleTour = () =>{
-        navigate('/Login',{});
+        navigate('/Tours',{});
     }
 
     const handleAbout = () =>{
