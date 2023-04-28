@@ -12,7 +12,6 @@ export function ReservationDate() {
     const [schedules, setSchedules] = useState([]);
     const [reservations, setReservations] = useState([]); 
     const [tours, setTours] = useState([]);
-    const [tourr, setTour] = useState('');
     const [schedulesFiltered, setSchedulesFiltered] = useState([]);
     const schedulesCollectionRef = collection(db, "Schedules");
     const reservationsCollectionRef = collection(db, "Reservations");
@@ -28,7 +27,6 @@ export function ReservationDate() {
     useEffect(() => {
         setPackagePicked(packageChosen);
         setSchedules(schedule);
-        setTour(tour) 
         if(dateChosen!=''){
             console.log('adentro');
             handleDate(dateChosen);

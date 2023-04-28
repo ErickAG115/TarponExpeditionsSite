@@ -1,38 +1,174 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { db } from "../../firebase";
+import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
 
 export function ModifyTour() {
+
+    const toursCollectionRef = collection(db, "Tours");
+    const schedulesCollectionRef = collection(db, "Schedules");
+    const [tourName, setTourName] = useState('');
+    const [type, setType] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
+    const [place, setPlace] = useState('');
+    const [picture, setPicture] = useState([]);
+    const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+    const [tours, setTours] = useState([]);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const Tour = location.state.Tour;
+    const tour = doc(db, "Tours", Tour);
+
+    
+
+    const goBack = () =>{
+        navigate('/TourManagement',{});
+    };
+
+    const getTours = async () => {
+        const data = await getDocs(toursCollectionRef);
+        const tours = data.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }))
+          .filter(
+            (tour) =>
+              !tour.Deleted
+          );
+        setTours(tours);
+    };
+    useEffect(() => {
+        getTours();
+      }, []);
+
+    const updateInputs = async () =>{
+        const TourDOC = await getDoc(doc(db, "Tours", Tour));
+        setDescription(TourDOC.data().Desc);
+        setType(TourDOC.data().Type);
+        setPlace(TourDOC.data().Place);
+        setPrice(TourDOC.data().Price);
+        setSelectedCheckboxes(TourDOC.data().Techniques);
+        setTourName(TourDOC.data().Name);
+        const checkBoxesChecked = TourDOC.data().Techniques;
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkBoxesChecked.forEach((name) => {
+            const checkbox = Array.from(checkboxes).find((el) => el.name === name);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+    }
+    useEffect(() => {
+        updateInputs();
+      }, []);
+
+    const handleCheckboxChange = (e) => {
+        const checkboxValue = e.target.value;
+        const isChecked = e.target.checked;
+    
+        if (isChecked) {
+          setSelectedCheckboxes([...selectedCheckboxes, checkboxValue]);
+        } else {
+          setSelectedCheckboxes(selectedCheckboxes.filter((value) => value !== checkboxValue));
+        }
+        console.log(selectedCheckboxes);
+      };
+
+    const getCheckboxes = () => {
+        console.log(selectedCheckboxes);
+    };
+
+    const uploadTour = async () => {
+        if(tourName=='' || type=='' || price=='' || description=='' || selectedCheckboxes==[] || place==''){
+            console.log('a');
+        }
+        else{
+            let found = false;
+            for(let i in tours){
+                if(tours[i].Name == tourName){
+                    found=true;
+                }
+            }
+            if(found==true){
+
+            }
+
+            else{
+                const dateStart = new Date(`1970-01-01T${start}`);
+                const dateEnd = new Date(`1970-01-01T${end}`);
+                const unixTimestampStart = dateStart.getTime();
+                const unixTimestampEnd = dateEnd.getTime();
+                const startStamp = Timestamp.fromMillis(unixTimestampStart);
+                const endStamp = Timestamp.fromMillis(unixTimestampEnd);
+                const dataTour = {
+                    Name: tourName,
+                    Type: type,
+                    Price: price,
+                    Description: description,
+                    Deleted: false,
+                    Place: place,
+                    Techniques: selectedCheckboxes
+                };
+                console.log('aaaa');
+                await updateDoc(tour, dataTour);
+            }
+        }
+    }
+    
+
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '85%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Modifying Tour</label>
+                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Registration</label>
                         <div style={{width: '100%', height:'100%'}}>
                         <div style={{float: 'left', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-79px'}}>Name</label>
-                                <input type="text" id="First Name" style={{ borderRadius: '5px', marginRight:'10px'}} />
+                                <input type="text" id="Tour Name" value={tourName} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setTourName(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Tour Type</label>
-                                <input type="text" id="Password" style={{ borderRadius: '5px', marginRight:'10px'}} />
+                                <input type="text" id="Tour Type" value={type} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setType(event.target.value)}/>
+                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Place</label>
+                                <input type="text" id="Place" value={place} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setPlace(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-82px'}}>Price</label>
-                                <input type="number" id="Password" style={{ borderRadius: '5px', marginRight:'10px'}} />
+                                <input type="number" id="Price" value={price} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setPrice(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-57px'}}>Description</label>
-                                <textarea id="Password" style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} />
+                                <textarea id="Password" value={description} style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} onChange={(event)=>setDescription(event.target.value)}/>
                         </div>
-                        <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-74px'}}>
+                        <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-52px'}}>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px'}}>Starting Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} />
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setStart(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} />
-                                <button style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginTop:'10px', marginBottom:'16px', position: 'relative', left: '-15px'}}>Add Schedule</button>
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setEnd(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
-                                <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '49px'}} />
+                                <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event)=>setPicture(event.target.value)}/>
+                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-46px', marginTop:'10px'}}>Techniques</label>
+                                <div style={{display:'flex', flexDirection:'column'}}>
+                                <div style={{position: 'relative', left:'-40px'}}>
+                                <input type='checkbox' id="FlyFishing" name='FlyFishing' value='FlyFishing' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
+                                <label for="FlyFishing" style={{fontFamily: 'lato', fontSize: '20px'}}>FlyFishing</label>
+                                </div>
+                                <div style={{position: 'relative', left:'-40px'}}>
+                                <input type='checkbox' id="JiggingFast" name='JiggingFast' value='JiggingFast' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
+                                <label for="JiggingFast" style={{fontFamily: 'lato', fontSize: '20px'}}>JiggingFast</label>
+                                </div>
+                                <div style={{position: 'relative', left:'-40px'}}>
+                                <input type='checkbox' id="Trolling" name='Trolling' value='Trolling' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
+                                <label for="Trolling" style={{fontFamily: 'lato', fontSize: '20px'}}>Trolling</label>
+                                </div>
+                                <div style={{position: 'relative', left:'-40px'}}>
+                                <input type='checkbox' id="LiveBait" name='LiveBait' value='LiveBait' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
+                                <label for="LiveBait" style={{fontFamily: 'lato', fontSize: '20px'}}>LiveBait</label>
+                                </div>
+                                </div>
                         </div>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Confirm</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => uploadTour()}>Modify</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goBack()}>Back</button>
                         </div>
                     </div>
                 </div>

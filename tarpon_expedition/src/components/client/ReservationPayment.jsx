@@ -20,7 +20,7 @@ export function ReservationPayment() {
     const navigate = useNavigate();
 
     const navigateCard = () => {
-        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '', CVV: '', ExpDate: ''}})
+        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '1', CVV: '', ExpDate: ''}})
     }
 
     const navigatePaypal = () => {

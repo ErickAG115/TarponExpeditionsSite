@@ -10,7 +10,7 @@ export function TourManagement() {
     const [tours, setTours] = useState([]);
     const tourCollectionRef = collection(db, "Tours");
 
-    const getReservations = async () => {
+    const getTours = async () => {
         const data = await getDocs(tourCollectionRef);
         const toursDoc = data.docs
             .map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -19,8 +19,13 @@ export function TourManagement() {
         console.log(tours);
     };
 
+    const goModify=(tour)=>{
+        console.log(tour);
+        navigate('/ModifyTour',{state:{Tour: tour}});
+    }
+
   useEffect(() => {
-    getReservations();;
+    getTours();;
   }, []);
 
     const navigate = useNavigate();
@@ -55,7 +60,7 @@ export function TourManagement() {
                                     <td>{tour.Name}</td>
                                     <td>{tour.Price}</td>
                                     <td>{(tour.Techniques).join(', ')}</td>
-                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}}>Modify
+                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goModify(tour.id)}>Modify
                                     </button></td>
                                     <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}}>Eliminate
                                     </button></td>
