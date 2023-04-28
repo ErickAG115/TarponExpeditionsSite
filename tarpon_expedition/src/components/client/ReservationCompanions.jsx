@@ -31,7 +31,7 @@ export function ReservationCompanions() {
       }, []);
 
     const goToPayments = () => {
-        navigate('/ReservationPayment',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}});
+        navigate('/ReservationPayment',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price}});
     }
 
     const goBack = () => {

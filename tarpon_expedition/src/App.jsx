@@ -19,6 +19,9 @@ import { Checkout } from "./components/client/checkout";
 import { Paypal } from "./components/client/paypal";
 import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
+import { ClientReservations } from "./components/client/ClientReservations";
+import { TourManagement } from "./components/admin/TourManagement";
+
 
 
 export function App() {
@@ -44,6 +47,8 @@ export function App() {
           <Route exact path="/ReservationDate" element={<ReservationDate />} />
           <Route exact path="/ReservationCompanions" element={<ReservationCompanions />} />
           <Route exact path="/ReservationPayment" element={<ReservationPayment />} />
+          <Route exact path="/ClientReservations" element={<ClientReservations />} />
+          <Route exact path="/TourManagement" element={<TourManagement />} />
         </Routes>
       </div>
     </Router>
