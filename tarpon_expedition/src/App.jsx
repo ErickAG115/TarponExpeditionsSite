@@ -10,6 +10,7 @@ import { ClientMenu } from "./components/client/ClientMenu";
 import { AdminMenu } from "./components/admin/AdminMenu";
 import { RegisterEmployee } from "./components/admin/RegisterEmployee";
 import { Tours } from "./components/client/Tours";
+import { TourInfo } from "./components/client/TourInfo";
 import { ReservationDate } from "./components/client/ReservationDate";
 import { ReservationCompanions } from "./components/client/ReservationCompanions";
 import { ReservationPayment } from "./components/client/ReservationPayment";
@@ -32,6 +33,7 @@ export function App() {
           <Route exact path="/AdminMenu" element={<AdminMenu />} />
           <Route exact path="/RegisterEmployee" element={<RegisterEmployee />} />
           <Route exact path="/Tours" element={<Tours />} />
+          <Route exact path="/TourInfo" element={<TourInfo />} />
           <Route exact path="/AboutUs" element={<AboutUs />} />
           <Route exact path="/Contact" element={<Contact />} />
           <Route exact path="/card" element={<Card />} />

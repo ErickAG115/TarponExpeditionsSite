@@ -7,35 +7,35 @@ export function ReservationCompanions() {
     const [seniors, setSeniors] = useState(0);
     const [children, setChildren] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
-    const price = 100;
-    const childPrice = price*(75/100);
-    const seniorPrice = price*(50/100);
 
     const location = useLocation();
     const datePicked = location.state.date;
     const packagePicked = location.state.package;
     const schedule = location.state.schedule;
+    const totalPriceLocation = location.state.totalPrice;
+    const adultsLocation = location.state.adults;
+    const seniorsLocation = location.state.seniors;
+    const childrenLocation = location.state.children;
+    const price = location.state.price;
+    const childPrice = price*(75/100);
+    const seniorPrice = price*(50/100);
     const tour = location.state.tour;
     const navigate = useNavigate();
-
-    useEffect(() => {
-        setAdults(0);
-      }, []);
+    console.log(datePicked);
 
       useEffect(() => {
-        setSeniors(0);
-      }, []);
-
-      useEffect(() => {
-        setChildren(0);
-      }, []);
-
-      useEffect(() => {
-        setTotalPrice(price);
+        setAdults(adultsLocation);
+        setChildren(childrenLocation);
+        setSeniors(seniorsLocation);
+        setTotalPrice(totalPriceLocation);
       }, []);
 
     const goToPayments = () => {
-        navigate('/ReservationPayment',{state: {date: datePicked, pacakge: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}});
+        navigate('/ReservationPayment',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}});
+    }
+
+    const goBack = () => {
+        navigate('/ReservationDate',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, price: price}});
     }
 
     const addAdult  = async () => {
@@ -130,7 +130,7 @@ export function ReservationCompanions() {
                         </div>
                         <label style={{fontFamily: 'lato', fontSize: '20px', fontWeight:'bold'}}>Total price: ${totalPrice}</label> 
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goToPayments()}>Next</button>
                         </div>
                     </div>

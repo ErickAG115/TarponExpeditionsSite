@@ -14,15 +14,20 @@ export function ReservationPayment() {
     const adults = location.state.adults;
     const seniors = location.state.seniors;
     const children = location.state.children;
+    const price = location.state.price;
     const tour = location.state.tour;
     const navigate = useNavigate();
 
     const navigateCard = () => {
-        navigate('/card',{state: {date: datePicked, pacakge: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '', CVV: '', ExpDate: ''}})
     }
 
     const navigatePaypal = () => {
-        navigate('/paypal',{state: {date: datePicked, pacakge: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+        navigate('/paypal',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children}})
+    }
+
+    const goBack = () => {
+        navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, price: price, adults: adults, seniors: seniors, children: children, totalPrice: totalPrice}});
     }
 
     console.log(datePicked);
@@ -37,8 +42,7 @@ export function ReservationPayment() {
                         <button style={{width:'30%', height:'7%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom:'35px'}} onClick={() => navigateCard()}>Credit/Debit Card</button>
                         <button style={{width:'30%', height:'7%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom:'55px'}} onClick={() => navigatePaypal()}>PayPal</button>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Next</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px'}} onClick={() => goBack()}>Back</button>
                         </div>
                     </div>
                 </div>

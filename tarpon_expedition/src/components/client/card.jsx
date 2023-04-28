@@ -19,14 +19,27 @@ export function Card() {
     const seniors = location.state.seniors;
     const children = location.state.children;
     const tour = location.state.tour;
+    const CreditNumber = location.state.CreditCardNumber;
+    const CVVCode = location.state.CVV;
+    const Month = location.state.ExpDate;
+    const Year = location.state.ExpDate;
 
     const navigate = useNavigate();
 
     const goCheckout = () => {
       if(creditCardNumber !='' || CVV != '' || month !='' || year !=''){
-        navigate('/checkout',{state: { PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: creditCardNumber, CVV: CVV, ExpDate: `${month}/${year}`,date: datePicked, pacakge: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+        navigate('/checkout',{state: { PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: creditCardNumber, CVV: CVV, ExpDate: `${month}/${year}`,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
       }
     }
+
+    useEffect(() => {
+      console.log('a');
+      setCVV(CVVCode);
+      setMonth(Month.slice(0, 2));
+      setYear(Year.slice(-2));
+      setCreditCardNumber(CreditNumber);
+      console.log(CVV);
+    },[]);
 
     useEffect(() => {
         const formattedValue = creditCardNumber

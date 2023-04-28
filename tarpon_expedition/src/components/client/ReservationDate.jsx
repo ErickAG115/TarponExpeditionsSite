@@ -1,30 +1,54 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, forwardRef, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
 import { db } from "../../firebase";
 import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
+import moment from 'moment';
 
 export function ReservationDate() {
     const [datePicked, setDatePicked] = useState("");
     const [packagePicked, setPackagePicked] = useState("");
     const [schedulePicked, setSchedulePicked] = useState("");
     const [schedules, setSchedules] = useState([]);
+    const [reservations, setReservations] = useState([]); 
     const [tours, setTours] = useState([]);
+    const [tourr, setTour] = useState('');
     const [schedulesFiltered, setSchedulesFiltered] = useState([]);
     const schedulesCollectionRef = collection(db, "Schedules");
+    const reservationsCollectionRef = collection(db, "Reservations");
     const toursCollectionRef = collection(db, "Tours");
     let navigate = useNavigate();
     const location = useLocation();
+    const dateChosen = location.state.date;
+    const packageChosen = location.state.package;
+    const schedule = location.state.schedule;
+    const tour = location.state.tour;
+    const price = location.state.price;
+
+    useEffect(() => {
+        setPackagePicked(packageChosen);
+        setSchedules(schedule);
+        setTour(tour) 
+        if(dateChosen!=''){
+            console.log('adentro');
+            handleDate(dateChosen);
+        }
+        else{
+            handleDate('01/01/2023');
+        }
+      }, [dateChosen]);
+
     //const tour = location.state.tour;
-    const tour = '5BobrfcDwVxuyLiG7Gxf';
+    //const tour = 'tour name';
 
     const goToCompanions = () => {
-         navigate('/ReservationCompanions',{state: {date: datePicked, pacakge: packagePicked, schedule: schedulePicked, tour: tour}});
+         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tour, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price)}});
     }
 
     const navigateTours = () => {
         navigate('/Tours',{});
     };
+    
 
     const getTours = async () => {
         const data = await getDocs(toursCollectionRef);
@@ -50,30 +74,61 @@ export function ReservationDate() {
         getSchedules(); 
       }, []);
 
+      const getReservations = async () => {
+        const data = await getDocs(reservationsCollectionRef);
+        const reservation = data.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }));
+        setReservations(reservation);
+    };
+    useEffect(() => {
+        getReservations(); 
+      }, []);
+
     
-        const filterSchedules = async () => {
-            const dataArray = [];
-            console.log(schedules);
-            console.log(tours);
-            for(let i in schedules){
-                if(schedules[i].Tour == tour){
-                    const dateStart = (schedules[i].Start).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    const dateFinish = (schedules[i].Finish).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                     dataArray.push({
+    const filterSchedules = () => {
+        console.log(datePicked);
+        console.log(schedules);
+        const dataArray = [];
+        var found = false;
+        const localDate = new Date(datePicked);
+        const timezoneOffset = localDate.getTimezoneOffset();
+        localDate.setMinutes(localDate.getMinutes() + timezoneOffset);
+        const formattedDate = localDate.toLocaleDateString(undefined, { timeZone: 'UTC' });
+        for(let i in schedules){
+            found = false;
+            if(schedules[i].Tour == tour){
+                const dateStart = (schedules[i].Start).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const dateFinish = (schedules[i].Finish).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                for(let k in reservations){
+                    const resStart = (reservations[k].start).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const resEnd = (reservations[k].end).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const resDate = (reservations[k].start).toDate().toLocaleDateString();
+                    if(dateStart==resStart && dateFinish==resEnd && resDate==formattedDate && tour == reservations[k].Tour){
+                        console.log('found');
+                        found = true;
+                    }
+                }
+                if(found==false){
+                    dataArray.push({
                         text: `${dateStart} to ${dateFinish}`,
                         id: schedules[i].id
                     });
                 }
             }
-            setSchedulesFiltered(dataArray);
-            console.log(dataArray);
-        };
-        
-        useEffect(() => {
-            filterSchedules();
-            console.log('e');
-        }, [schedules, tour]);
+        }
+        setSchedulesFiltered(dataArray);
+        console.log(dataArray);
+    };
 
+    useEffect(() => {
+        console.log(datePicked);
+        filterSchedules();
+      }, [datePicked]);
+      
+      const handleDate = (e) => {
+        console.log(e);
+        setDatePicked(e);
+      }
 
     return (
         <Fragment>
@@ -81,8 +136,8 @@ export function ReservationDate() {
                 <div style={{float: 'right', width: '60%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
                         <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Choose a package and Schedule</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Date</label>
-                        <input type="date" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', position: 'relative', top: '-20px'}} onChange={(event) =>{setDatePicked(event.target.value);}}/>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Pick a date to display available schedules</label>
+                        <input value={datePicked} type="date" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', position: 'relative', top: '-20px'}} onChange={(event) =>{handleDate(event.target.value);}}/>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Schedules</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
                             {schedulesFiltered.map((filteredSchedules) => (
