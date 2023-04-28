@@ -101,12 +101,12 @@ export function Register() {
                 <div class='navbar'>
                     <img src={require('./logoNegro.png')} class = 'logo'/>
                         <ul>
-                            <li><a onClick={handleHome} style= {{color: '#fff'}}> Home </a></li>
-                            <li><a onClick={handleTour} style= {{color: '#fff'}}> Tours </a></li>
-                            <li><a onClick={handleAbout} style= {{color: '#fff'}}> About </a></li>
-                            <li><a onClick={handleContact} style= {{color: '#fff'}}> Contact </a></li>
-                            <li><a onClick={handleLogin} style= {{color: '#fff'}}> LOGIN </a></li>
-                            <li><a onClick={handleMyAccount} style= {{color: '#fff'}}>MY ACCOUNT</a></li>
+                            <li><button onClick={handleHome} style= {{color: '#fff'}}> Home </button></li>
+                            <li><button onClick={handleTour} style= {{color: '#fff'}}> Tours </button></li>
+                            <li><button onClick={handleAbout} style= {{color: '#fff'}}> About </button></li>
+                            <li><button onClick={handleContact} style= {{color: '#fff'}}> Contact </button></li>
+                            <li><button onClick={handleLogin} style= {{color: '#fff'}}> LOGIN </button></li>
+                            <li><button onClick={handleMyAccount} style= {{color: '#fff'}}>MY ACCOUNT</button></li>
                         </ul>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',}}>

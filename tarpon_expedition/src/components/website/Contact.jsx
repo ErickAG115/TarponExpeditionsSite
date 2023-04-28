@@ -36,12 +36,12 @@ export function Contact() {
             <div class='navbarAbout'>
                     <img src={require('./logoNegro.png')} class = 'logo'/>
                             <ul>
-                                <li><a onClick={handleHome}> Home </a></li>
-                                <li><a onClick={handleTour}> Tours </a></li>
-                                <li><a onClick={handleAbout}> About </a></li>
-                                <li><a onClick={handleContact}> Contact </a></li>
-                                <li><a onClick={handleLogin}> LOGIN </a></li>
-                                <li><a onClick={handleMyAccount}>MY ACCOUNT</a></li>
+                                <li><button onClick={handleHome}> Home </button></li>
+                                <li><button onClick={handleTour}> Tours </button></li>
+                                <li><button onClick={handleAbout}> About </button></li>
+                                <li><button onClick={handleContact}> Contact </button></li>
+                                <li><button onClick={handleLogin}> LOGIN </button></li>
+                                <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                             </ul>
                     </div>
             <label style={{fontFamily: 'Lato', fontSize: '40px', fontWeight:'bold', marginBottom:'20px'}}>Contact Information</label>

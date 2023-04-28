@@ -23,12 +23,14 @@
     margin: 0 20px;
     position: relative;
 }
-.navbarAbout ul li a{
+.navbarAbout ul li button{
     text-decoration: none;
     color: #000000;
     font-size: 20px;
     text-transform: uppercase;
     cursor: pointer;
+    border: none;
+    background: transparent;
 }
 .navbarAbout ul li::after{
     content: '';

@@ -15,6 +15,7 @@ export function CreateTour() {
     const [newDescription, setDescription] = useState("");
     const [startingTime, setStartingTime] = useState("");
     const [finishingTime, setFinishingTime] = useState("");
+    const [techniques, setTechniques] = useState([]);
 
     const [file, setFile] = useState(null);
 
@@ -48,11 +49,14 @@ export function CreateTour() {
             if(repeatedTour){
                 alert('Ya existe un TOUR con este nombre');
             }
-            else if(newNameTour == "" || newPlace == "" || newPrice=="" || newDescription=="" || URL=="" || startingTime=="", finishingTime==""){
+            else if(newNameTour == "" || newPlace == "" || newPrice=="" || newDescription=="" || URL=="" || startingTime=="" || finishingTime==""){
                 console.log('HOLA')
                 alert('No puede ingresar datos vacios');
             }
             else if(!newTourType){
+                alert('No puede ingresar datos vacios');
+            }
+            else if(!techniques){
                 alert('No puede ingresar datos vacios');
             }
             else{
@@ -64,6 +68,7 @@ export function CreateTour() {
                     Price: newPrice,
                     Desc: newDescription,
                     Image: URL,
+                    Techniques: techniques,
                     Deleted: deletedFlag
                 };
                 const dataSchedules ={
@@ -124,7 +129,7 @@ export function CreateTour() {
                         </div>
                         <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-103px'}}>
                                 
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px'}}>Starting Time</label>
+                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px', marginTop:'80px'}}>Starting Time</label>
                                 <input type="time" id="StartTime" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-50px'}} 
                                     onChange={(event) =>{
                                         setStartingTime(event.target.value);}}
@@ -134,15 +139,84 @@ export function CreateTour() {
                                     onChange={(event) =>{
                                         setFinishingTime(event.target.value);}}
                                 />
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
+                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px',marginTop:'20px'}}>Picture</label>
                                 <input type="file" id="Picture" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '58px'}} 
                                     onChange={(event) => setFile(event.target.files[0])}
                                 />
+
+                                <div>  
+                                <label style={{fontFamily: 'lato', fontSize: '20px', marginTop:'20px', marginRight:'30px'}}>Fishing Techniques</label>
+                                <div style={{display: 'flex', flexDirection: 'column'}}>
+                                    <label htmlFor="Fly Fishing">
+                                    <input type="checkbox" id="Fly Fishing" name="Fly Fishing" value="FlyFishing"
+                                        onChange={(event) =>{
+                                            const selectedItem = event.target.value;
+                                            const isSelected = event.target.checked;
+                                            if(isSelected){
+                                                setTechniques([...techniques,selectedItem]);
+                                            }
+                                            else{
+                                                setTechniques(techniques.filter(technique => technique !== selectedItem));
+                                            }
+                                        }}
+                                    />
+                                    Fly Fishing
+                                    </label>
+                                    <label htmlFor="Jigging Fast">
+                                    <input type="checkbox" id="Jigging Fast" name="Jigging Fast" value="JiggingFast"
+                                        onChange={(event) =>{
+                                            const selectedItem = event.target.value;
+                                            const isSelected = event.target.checked;
+                                            if(isSelected){
+                                                setTechniques([...techniques,selectedItem]);
+                                            }
+                                            else{
+                                                setTechniques(techniques.filter(technique => technique !== selectedItem));
+                                            }
+                                        }}
+                                            
+
+                                    />
+                                    Jigging Fast
+                                    </label>
+                                    <label htmlFor="Troling">
+                                    <input type="checkbox" id="Troling" name="Troling" value="Troling" 
+                                        onChange={(event) =>{
+                                            const selectedItem = event.target.value;
+                                            const isSelected = event.target.checked;
+                                            if(isSelected){
+                                                setTechniques([...techniques,selectedItem]);
+                                            }
+                                            else{
+                                                setTechniques(techniques.filter(technique => technique !== selectedItem));
+                                            }
+                                        }}
+                                    />
+                                    Troling
+                                    </label>
+                                    <label htmlFor="Live Bait">
+                                    <input type="checkbox" id="Live Bait" name="Live Bait" value="LiveBait" 
+                                        onChange={(event) =>{
+                                            const selectedItem = event.target.value;
+                                            const isSelected = event.target.checked;
+                                            if(isSelected){
+                                                setTechniques([...techniques,selectedItem]);
+                                            }
+                                            else{
+                                                setTechniques(techniques.filter(technique => technique !== selectedItem));
+                                            }
+                                        }}
+                                    />
+                                    Live Bait
+                                    </label>
+                                </div>
+                                </div>
                         </div>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button class='btnT'>Back</button>
                            <button onClick={CreateTour} class='btnT'>Create</button>
+                           <button onClick={console.log('Tecnicas:',techniques)} class='btnT'>PROBAR</button>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import { addDoc, collection, getDocs, where, query  } from "firebase/firestore";
 
 export function Tours() {
     const navigate = useNavigate();
+    //<h2 style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
     
 
     const [tourImages, setTourImages] = useState([]);
@@ -70,11 +71,11 @@ export function Tours() {
                                 </div>
                                 <div class='flip-card-back'>
                                     <h1>{tours.Name}</h1>
-                                    <h2 style={{fontSize: '20px'}}>Type: {tours.Type}</h2>
+                                    <h2 style={{fontSize: '20px'}}>Type of Tour: {tours.Type}</h2>
                                     <h2 style={{fontSize: '20px'}}>Place: {tours.Place}</h2>
-                                    <p>{tours.Desc}</p>
+                                    <h2 style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
                                     <h2 style={{fontSize: '20px'}}>Price: ${tours.Price}</h2>
-                                    <button onClick={handleHome} class='btnT btnT1'>BOOK NOW</button>
+                                    <button onClick={handleHome} class='btnT btnT1'>See More</button>
                                 </div>
                             </div>
                         </div>
