@@ -15,11 +15,12 @@ export function ReservationPayment() {
     const seniors = location.state.seniors;
     const children = location.state.children;
     const price = location.state.price;
+    console.log(price);
     const tour = location.state.tour;
     const navigate = useNavigate();
 
     const navigateCard = () => {
-        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '', CVV: '', ExpDate: ''}})
+        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '1', CVV: '', ExpDate: ''}})
     }
 
     const navigatePaypal = () => {

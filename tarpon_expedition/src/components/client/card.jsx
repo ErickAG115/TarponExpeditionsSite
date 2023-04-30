@@ -21,6 +21,7 @@ export function Card() {
     const tour = location.state.tour;
     const CreditNumber = location.state.CreditCardNumber;
     const CVVCode = location.state.CVV;
+    console.log(CVVCode);
     const Month = location.state.ExpDate;
     const Year = location.state.ExpDate;
 
