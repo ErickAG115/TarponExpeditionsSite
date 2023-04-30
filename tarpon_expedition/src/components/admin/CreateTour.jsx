@@ -24,7 +24,7 @@ export function CreateTour() {
     const schedulesCollectionRef = collection(db, "Schedules");
 
     const checkTours = async (tour) => {
-        const querySnapshot = await getDocs(query(collection(db, "Tours"), where("Name", "==", tour)));
+        const querySnapshot = await getDocs(query(collection(db, "Tours"), where("Name", "==", tour), where("Deleted", "==", false)));
         return !querySnapshot.empty;
     };
 
@@ -56,7 +56,7 @@ export function CreateTour() {
             else if(!newTourType){
                 alert('No puede ingresar datos vacios');
             }
-            else if(!techniques){
+            else if(techniques.length == 0){
                 alert('No puede ingresar datos vacios');
             }
             else{
@@ -216,7 +216,6 @@ export function CreateTour() {
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button class='btnT'>Back</button>
                            <button onClick={CreateTour} class='btnT'>Create</button>
-                           <button onClick={console.log('Tecnicas:',techniques)} class='btnT'>PROBAR</button>
                         </div>
                     </div>
                 </div>

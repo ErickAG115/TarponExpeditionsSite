@@ -1,10 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import "./TourPageStyle.css";
 
 export function TourInfo() {
+    
     const navigate = useNavigate();
+
+    const location = useLocation();
+    // Data from the tour that have been selected
+    const idTour = location.state.idTour;
+    const tourName = location.state.tourName;
+    const imgTour = location.state.imgTour;
+    const tourPlace = location.state.tourPlace;
+    const tourType = location.state.tourType;
+    const tourTech = location.state.tourTech;
+    const tourPrice = location.state.tourPrice;
+    const tourDescription = location.state.tourDescription;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+
+    console.log('TourInfo, userData', idUser,email,firstName,lastName);
+
     const handleHome = () =>{
         navigate('/',{});
     }
@@ -14,7 +35,8 @@ export function TourInfo() {
     }
 
     const handleLogin = () =>{
-        navigate('/Login',{});
+        const pageNumber = 4;
+        navigate('/Login',{state:{pageNumber: pageNumber}});
     }
 
     const handleMyAccount = () =>{
@@ -22,54 +44,72 @@ export function TourInfo() {
     }
 
     const startBook = () => {
-        navigate('/ReservationDate',{state: {date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100'}});
+
+        const pageNumber = 3;
+        
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            alert('NO esta loggeado');
+            navigate('/Login',{state:{pageNumber: pageNumber}});
+
+        }
+        else{
+            alert('SÍ está loggeado');
+            navigate('/ReservationDate',{state: {date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
+                                        idTour: idTour, tourName: tourName,tourPrice: tourPrice,
+                                        idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
+
+        //navigate('/ReservationDate',{state: {date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100'}});
+        //navigate('/Login',{state:{pageNumber: pageNumber}});
     };
 
     const [tourImages, setTourImages] = useState([]);
-
-    const handleAddTourImage = (e) => {
-        e.preventDefault();
-        const url = e.target.elements.url.value;
-        setTourImages([...tourImages, url]);
-        e.target.elements.url.value = "";
-
-        {tourImages.map((image, index) => (console.log("aqui",image)))};
+    
+    const handleBack = () =>{
+        navigate('/Tours',{});
     }
+
 
     return (
         <Fragment>
-            <div style={{backgroundColor: '#D2D7DB', height: '100vh',flexDirection: 'column', display:'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div className='tourInfoback'>
                 <div class='navbarTour'>
                     <img src={require('./hostia.png')} class = 'logo'/>
                         <ul>
-                            <li><a onClick={handleHome}> Home </a></li>
-                            <li><a onClick={handleTour}> Tours </a></li>
-                            <li><a onClick={handleTour}> About </a></li>
-                            <li><a onClick={handleTour}> Contact </a></li>
-                            <li><a onClick={handleLogin}> LOGIN </a></li>
-                            <li><a onClick={handleMyAccount}>MY ACCOUNT</a></li>
+                            <li><button onClick={handleHome}> Home </button></li>
+                            <li><button onClick={handleTour}> Tours </button></li>
+                            <li><button onClick={handleTour}> About </button></li>
+                            <li><button onClick={handleTour}> Contact </button></li>
+                            <li><button onClick={handleLogin}> LOGIN </button></li>
+                            <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                         </ul>
                 </div>
-                <h1>Tour Information</h1>
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',width: '100%'}}>
-                <div style={{float: 'left', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', display: 'flex', flexDirection: 'column'}}>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Name:</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Price:</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Techniques:</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Description:</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Schedules:</label>
+
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "80vh" }}>
+                    <div style={{ float: "right", width: "50%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", overflow: "auto" }}>    
+                        <div style={{ background: "white", height: "100%", width: "90%", display: "flex", flexDirection: "column", overflow: "auto", alignItems: "center", justifyContent: "center", borderRadius: "10px", border: "2px solid rgba(255,255,255,.5)", boxShadow: "0 0 30px rgba(0,0,0,.5)" }}>
+                            
+                            
+                            <h1 style={{ textAlign: "center"}}>{tourName}</h1>
+                            <img src={imgTour} style={{ maxWidth: "250px", height: "auto", marginBottom: "10px" }} />
+                            <p style={{ textAlign: "center", marginBottom: "10px", marginLeft:'50px', marginRight:'50px' }}>{tourDescription}</p>
+                            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "80%", margin: "10px 0" }}>
+                                <label style={{fontWeight:'bold'}}>Place: {tourPlace}</label>
+                                <label style={{fontWeight:'bold'}}>Tour Type: {tourType}</label>
+                                <label style={{fontWeight:'bold'}}>Techniques: {tourTech && tourTech.join(', ')}</label>
+                                
+                            </div>
+                            <label style={{fontWeight:'bold', fontSize:'18px', marginTop:'2px', marginBottom:'20px'}}>Price: ${tourPrice}</label>
+                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                <button class='btnTInfo2' onClick={handleBack} >Back</button>
+                                <button class='btnTInfo btnT1' onClick={() => startBook()} >Book Now</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div style={{float: 'right ', width: '50%', height:'100%', overflow: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>Tour</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>100$</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>1 2 and 3</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>This is a tour in the tour section</label>
-                    <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', marginBottom:'20px'}}>From X to Y</label>
-                    
-                </div>
-                </div>
+
+
                 
-                <button class='btn' onClick={() => startBook()} >Book Now</button>
             </div>
             
         </Fragment>

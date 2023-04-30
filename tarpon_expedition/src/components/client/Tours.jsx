@@ -1,15 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./TourPageStyle.css";
 import { db } from "../../firebase";
 import { addDoc, collection, getDocs, where, query  } from "firebase/firestore";
 
 export function Tours() {
-    const navigate = useNavigate();
-    //<h2 style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
-    
+    const pageNumber = 2; 
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+
+
+    
     const [tourImages, setTourImages] = useState([]);
 
     const [tours, setTours] = useState([]);
@@ -28,7 +39,6 @@ export function Tours() {
         getTours();
     }, []);
 
-
     const handleHome = () =>{
         navigate('/',{});
     }
@@ -38,13 +48,19 @@ export function Tours() {
     }
 
     const handleLogin = () =>{
-        navigate('/Login',{});
+        navigate('/Login',{state:{pageNumber: pageNumber}});
     }
 
     const handleMyAccount = () =>{
         // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
         // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
         navigate('/ClientMenu',{});
+    }
+
+    const handleSeeMore = (idTour,tourName,imgTour,tourPlace,tourType,tourTech,tourPrice,tourDescription) =>{
+        //console.log('id',idTour);
+        navigate('/TourInfo',{state:{idTour: idTour, tourName:tourName, imgTour: imgTour, tourPlace: tourPlace, tourType:tourType, tourTech:tourTech,
+                                tourPrice:tourPrice, tourDescription: tourDescription, idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     return (
@@ -75,7 +91,8 @@ export function Tours() {
                                     <h2 style={{fontSize: '20px'}}>Place: {tours.Place}</h2>
                                     <h2 style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
                                     <h2 style={{fontSize: '20px'}}>Price: ${tours.Price}</h2>
-                                    <button onClick={handleHome} class='btnT btnT1'>See More</button>
+                                    <button onClick={() => handleSeeMore(tours.id,tours.Name,tours.Image,tours.Place,tours.Type,
+                                        tours.Techniques,tours.Price,tours.Desc)} class='btnT btnT1'>See More</button>
                                 </div>
                             </div>
                         </div>

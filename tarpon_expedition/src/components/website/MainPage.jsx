@@ -5,7 +5,10 @@ import "./MainPageStyle.css";
 
 
 export function MainPage() {
+    const pageNumber = 1; 
+    
     const navigate = useNavigate();
+
     const handleHome = () =>{
         navigate('/',{});
     }
@@ -23,7 +26,8 @@ export function MainPage() {
     }
 
     const handleLogin = () =>{
-        navigate('/Login',{});
+        //console.log('Numero de pag ',pageNumber)
+        navigate('/Login',{state:{pageNumber: pageNumber}});
     }
 
     const handleMyAccount = () =>{
@@ -33,8 +37,6 @@ export function MainPage() {
     }
 
     const handleBookNow = () =>{
-        // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
-        // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
         navigate('/Tours',{});
     }
 

@@ -1,14 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./MainPageStyle.css";
 import { db } from "../../firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 
 
-export function Login() {
-    const navigate = useNavigate();
+export function Login() { 
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    //Data received from other page
+    const pageNumber = location?.state?.pageNumber;
+
+
+    //Data of login page
     const [email, setEmail] = useState("");
     const [psswrd, setPsswrd] = useState("");
 
@@ -40,14 +47,34 @@ export function Login() {
                     navigate('/',{});
                 }
                 else{
-                    const id = users[i].id;
-                    const name= users[i].FirstName;
+                    const idUser = users[i].id;
+                    const firstName= users[i].FirstName;
                     const lastName = users[i].LastName;
-                    console.log(name);
+                    console.log(firstName);
                     console.log(lastName);
-                    console.log("Inicio de sesión Cliente exitoso");
-                    navigate('/Tours',{state:{id: id, Email: email, Password: psswrd, FirstName: name, 
-                                            LastName: lastName}});
+
+                    //IF THE USER LOGIN FROM THE HOME PAGE
+                    if(pageNumber == 1){
+                        console.log("Inicio de sesión desde Home Page exitoso");
+                        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+                    //IF THE USER LOGIN FROM THE TOURS CATALOG
+                    else if(pageNumber == 2){
+                        console.log("Inicio de sesión desde Tour Catalog exitoso");
+                        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+                    //IF THE USER LOGIN FROM THE TOUR INFO (BOOK NOW)
+                    else if(pageNumber == 3){
+                        console.log("Inicio de sesión desde Tour Info exitoso");
+                        navigate('/ReservationDate',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+                    //IF THE USER LOGIN FROM THE TOUR INFO (LOGIN)
+                    else if(pageNumber == 4){
+                        console.log("Inicio de sesión desde Tour Info exitoso");
+                        navigate('/TourInfo',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+
+                    console.log("NO ENTRO AQUI");
                 }
             }
         }
