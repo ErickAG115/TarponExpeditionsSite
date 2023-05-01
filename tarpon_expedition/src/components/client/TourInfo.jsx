@@ -31,12 +31,13 @@ export function TourInfo() {
     }
 
     const handleTour = () =>{
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleLogin = () =>{
         const pageNumber = 4;
-        navigate('/Login',{state:{pageNumber: pageNumber}});
+        navigate('/Login',{state:{pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
     }
 
     const handleMyAccount = () =>{
@@ -49,7 +50,8 @@ export function TourInfo() {
         
         if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
             alert('NO esta loggeado');
-            navigate('/Login',{state:{pageNumber: pageNumber}});
+            navigate('/Login',{state:{pageNumber: pageNumber, date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
+                                        idTour: idTour, tourName: tourName,tourPrice: tourPrice}});
 
         }
         else{
@@ -66,7 +68,7 @@ export function TourInfo() {
     const [tourImages, setTourImages] = useState([]);
     
     const handleBack = () =>{
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
 
@@ -78,8 +80,8 @@ export function TourInfo() {
                         <ul>
                             <li><button onClick={handleHome}> Home </button></li>
                             <li><button onClick={handleTour}> Tours </button></li>
-                            <li><button onClick={handleTour}> About </button></li>
-                            <li><button onClick={handleTour}> Contact </button></li>
+                            <li><button> About </button></li>
+                            <li><button> Contact </button></li>
                             <li><button onClick={handleLogin}> LOGIN </button></li>
                             <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                         </ul>

@@ -14,6 +14,16 @@ export function Login() {
     //Data received from other page
     const pageNumber = location?.state?.pageNumber;
 
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
+
 
     //Data of login page
     const [email, setEmail] = useState("");
@@ -66,12 +76,16 @@ export function Login() {
                     //IF THE USER LOGIN FROM THE TOUR INFO (BOOK NOW)
                     else if(pageNumber == 3){
                         console.log("Inicio de sesión desde Tour Info exitoso");
-                        navigate('/ReservationDate',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                        navigate('/ReservationDate',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+                                                            date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
+                                                            idTour: idTour, tourName: tourName,tourPrice: tourPrice}});
                     }
                     //IF THE USER LOGIN FROM THE TOUR INFO (LOGIN)
                     else if(pageNumber == 4){
                         console.log("Inicio de sesión desde Tour Info exitoso");
-                        navigate('/TourInfo',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                        navigate('/TourInfo',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+                                            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                                            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
                     }
 
                     console.log("NO ENTRO AQUI");
@@ -113,7 +127,8 @@ export function Login() {
 
     const handleSignUp = () =>{
        
-        navigate('/Register',{});
+        navigate('/Register',{state:{ pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
     };
 
     return (
@@ -124,9 +139,9 @@ export function Login() {
                         <ul>
                             <li><button onClick={handleHome} style= {{color: '#fff'}}> HOME </button></li>
                             <li><button onClick={handleTour} style= {{color: '#fff'}}> TOURS </button></li>
-                            <li><button onClick={handleAbout} style= {{color: '#fff'}}> ABOUT </button></li>
-                            <li><button onClick={handleContact} style= {{color: '#fff'}}> CONTACT </button></li>
-                            <li><button onClick={handleLogin} style= {{color: '#fff'}}> LOGIN </button></li>
+                            <li><button style= {{color: '#fff'}}> ABOUT </button></li>
+                            <li><button style= {{color: '#fff'}}> CONTACT </button></li>
+                            <li><button style= {{color: '#fff'}}> LOGIN </button></li>
                             <li><button onClick={handleMyAccount} style= {{color: '#fff'}}>MY ACCOUNT</button></li>
                         </ul>
                 </div>

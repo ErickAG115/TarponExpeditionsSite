@@ -1,36 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./AboutUsStyle.css";
 
 
 export function AboutUs() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+
+
     const handleHome = () =>{
         navigate('/',{});
     }
 
     const handleTour = () =>{
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
-    const handleAbout = () =>{
-        navigate('/AboutUs',{});
-    }
-
-    const handleContact = () =>{
-        navigate('/Contact',{});
-    }
-
-    const handleLogin = () =>{
-        navigate('/Login',{});
-    }
-
-    const handleMyAccount = () =>{
-        // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
-        // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
-        navigate('/ClientMenu',{});
-    }
     return (
         <Fragment>
                 <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', height: '120vh', flexDirection: 'column'}}>
@@ -40,10 +34,10 @@ export function AboutUs() {
                             <ul>
                                 <li><button onClick={handleHome}> Home </button></li>
                                 <li><button onClick={handleTour}> Tours </button></li>
-                                <li><button onClick={handleAbout}> About </button></li>
-                                <li><button onClick={handleContact}> Contact </button></li>
-                                <li><button onClick={handleLogin}> LOGIN </button></li>
-                                <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
+                                <li><button> About </button></li>
+                                <li><button> Contact </button></li>
+                                <li><button> LOGIN </button></li>
+                                <li><button>MY ACCOUNT</button></li>
                             </ul>
                     </div>
 

@@ -17,12 +17,21 @@ export function ReservationDate() {
     const reservationsCollectionRef = collection(db, "Reservations");
     const toursCollectionRef = collection(db, "Tours");
     let navigate = useNavigate();
+
     const location = useLocation();
     const dateChosen = location.state.date;
     const packageChosen = location.state.package;
     const schedule = location.state.schedule;
     const tour = location.state.tour;
     const price = location.state.price;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('userData', idUser,email,firstName,lastName);
+
 
     useEffect(() => {
         setPackagePicked(packageChosen);
@@ -44,7 +53,7 @@ export function ReservationDate() {
     }
 
     const navigateTours = () => {
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     };
     
 
@@ -148,7 +157,7 @@ export function ReservationDate() {
                             <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px', position: 'relative', top: '10px'}} onClick={() => setPackagePicked('Premium')}>Premium</button>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => {navigateTours()}}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => {navigateTours()}}>Cancel</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => {goToCompanions()}}>Next</button>
                         </div>
                     </div>

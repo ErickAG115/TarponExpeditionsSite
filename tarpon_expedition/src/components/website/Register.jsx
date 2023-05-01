@@ -1,13 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./MainPageStyle.css";
 import { db } from "../../firebase";
 import { addDoc, collection, getDocs, where, query  } from "firebase/firestore";
 
 export function Register() {
     const navigate = useNavigate();
+    const location = useLocation();
 
+    //PageNumber recieved from login
+    const pageNumber = location?.state?.pageNumber;
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
+
+
+    // DATA FROM THE REGISTER PAGE
     const [newName, setName] = useState("");
     const [newLastName, setLastName] = useState("");
     const [newEmail, setEmail] = useState("");
@@ -52,7 +67,8 @@ export function Register() {
             };
             await addDoc(usersCollectionRef, data);
             console.log('Successful Sign Up');
-            navigate('/Login',{});
+            navigate('/Login',{state:{ pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                                        tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
         }
         //console.log('Sign Up failed');
     }
@@ -91,7 +107,8 @@ export function Register() {
     const handleBack = () =>{
         // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
         // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
-        navigate('/Login',{});
+        navigate('/Login',{state:{ pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                                 tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
     }
 
 
@@ -103,10 +120,10 @@ export function Register() {
                         <ul>
                             <li><button onClick={handleHome} style= {{color: '#fff'}}> Home </button></li>
                             <li><button onClick={handleTour} style= {{color: '#fff'}}> Tours </button></li>
-                            <li><button onClick={handleAbout} style= {{color: '#fff'}}> About </button></li>
-                            <li><button onClick={handleContact} style= {{color: '#fff'}}> Contact </button></li>
-                            <li><button onClick={handleLogin} style= {{color: '#fff'}}> LOGIN </button></li>
-                            <li><button onClick={handleMyAccount} style= {{color: '#fff'}}>MY ACCOUNT</button></li>
+                            <li><button style= {{color: '#fff'}}> About </button></li>
+                            <li><button style= {{color: '#fff'}}> Contact </button></li>
+                            <li><button style= {{color: '#fff'}}> LOGIN </button></li>
+                            <li><button style= {{color: '#fff'}}>MY ACCOUNT</button></li>
                         </ul>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',}}>
