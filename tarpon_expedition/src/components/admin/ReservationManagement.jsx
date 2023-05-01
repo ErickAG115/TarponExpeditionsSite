@@ -36,8 +36,9 @@ export function ReservationManagement() {
   }, []);
 
     const navigate = useNavigate();
+
     const handleBack = () =>{
-        navigate('/',{});
+        navigate('/AdminMenu',{});
     }
 
     const goDetails = (reserv) =>{
@@ -81,6 +82,7 @@ export function ReservationManagement() {
                                 ))}
                                 </tbody>
                             </table>
+                            <button style={{fontSize: '20px', color:'white',width:'13%', height:'7%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>handleBack()}>Back</button>
                         </div>
                     </div>
                 </div>
