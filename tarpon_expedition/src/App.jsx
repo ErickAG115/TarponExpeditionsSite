@@ -21,8 +21,11 @@ import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
 import { ClientReservations } from "./components/client/ClientReservations";
 import { ChangePassword } from "./components/client/ChangePassword";
+import { ReservationInfoClient } from "./components/client/ReservationInfoClient";
 import { TourManagement } from "./components/admin/TourManagement";
 import { AddSchedule } from "./components/admin/AddSchedule";
+import { ReservationManagement } from "./components/admin/ReservationManagement";
+import { ReservationInfo } from "./components/admin/ReservationInfo";
 
 
 
@@ -53,6 +56,9 @@ export function App() {
           <Route exact path="/TourManagement" element={<TourManagement />} />
           <Route exact path="/AddSchedule" element={<AddSchedule />} />
           <Route exact path="/ChangePassword" element={<ChangePassword />} />
+          <Route exact path="/ReservationManagement" element={<ReservationManagement />} />
+          <Route exact path="/ReservationInfo" element={<ReservationInfo />} />
+          <Route exact path="/ReservationInfoClient" element={<ReservationInfoClient />} />
         </Routes>
       </div>
     </Router>

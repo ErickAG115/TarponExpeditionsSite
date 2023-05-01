@@ -13,6 +13,7 @@ export function AddSchedule() {
     const navigate = useNavigate();
     const location = useLocation();
     const TourName = location.state.Tour;
+    console.log(TourName);
 
     const goBack = () =>{
         navigate('/TourManagement',{});
@@ -30,6 +31,7 @@ export function AddSchedule() {
     };
     useEffect(() => {
         getSchedules();
+        console.log(schedules);
       }, []);
 
     const uploadSchedule = async () => {
@@ -75,6 +77,7 @@ export function AddSchedule() {
                             Tour: TourName
                         }
                         await addDoc(schedulesCollectionRef, data);
+                        getSchedules();
                     }
                 }
             }
@@ -85,11 +88,12 @@ export function AddSchedule() {
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
-                <div style={{float: 'right', width: '40%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                    <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Add Schedule</label>
+                <div style={{float: 'right', width: '70%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
+                    <div style={{backgroundColor: 'white', height:'90%', width:'60%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
+                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', position: 'relative', top: '10px'}}>Add Schedule</label>
+                        <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', position: 'relative', top: '40px'}}>Registered Schedules</label>
                         <div style={{float: 'right', width: '70%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative'}}>
-                        <table className="table" style={{ fontFamily: 'Lato', border: '1px solid black', fontSize: '20px'}}>
+                        <table className="table" style={{ fontFamily: 'Lato', border: '2px solid black', fontSize: '20px', borderRadius: '10px'}}>
                             <thead>
                                 <tr>
                                     <th>Starting time</th>
@@ -99,8 +103,8 @@ export function AddSchedule() {
                             <tbody>
                                 {schedules.map((schedule) => (
                                 <tr key={schedule.id}>
-                                    <td>{schedule.Start}</td>
-                                    <td>{schedule.Finish}</td>
+                                    <td>{(schedule.Start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
+                                    <td>{(schedule.Start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                                 </tr>
                                 ))}
                             </tbody>
@@ -110,11 +114,11 @@ export function AddSchedule() {
                                 <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '8px'}}>Finishing Time</label>
                             </div>
                             <div style={{display: 'flex', flexDirection: 'horizontal'}}>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '25px', position: 'relative'}} onChange={(event)=>setStart(event.target.value)}/>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '25px', position: 'relative'}} onChange={(event)=>setEnd(event.target.value)}/>
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setStart(event.target.value)}/>
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setEnd(event.target.value)}/>
                             </div>
                         </div>
-                           <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => uploadSchedule()}>Modify</button>
+                           <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => uploadSchedule()}>Add</button>
                            <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => goBack()}>Back</button>
                         
                     </div>
