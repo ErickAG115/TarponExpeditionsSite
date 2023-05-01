@@ -33,6 +33,10 @@ export function CreateTour() {
         setTourType(typeValue);
       };
 
+    const goBack = () =>{
+        navigate('/TourManagement',{});
+    };
+
     const CreateTour = async (e) => {
         e.preventDefault();
         try{
@@ -87,9 +91,10 @@ export function CreateTour() {
                 }
                 await addDoc(toursCollectionRef, dataTour);
                 await addDoc(schedulesCollectionRef, dataSchedules);
-                alert('Creación de Tour exitosa');
+                alert('New tour was registered successfully');
                 /* REALIZAR CAMBIO, DEBE DIRIRGIRLO A MANAGE TOURS -------------------------------- IMPORTANTE ---------------------------------*/
                 navigate('/TourManagemet',{});
+                navigate('/TourManagement',{});
             }
 
         } catch(error){
@@ -223,8 +228,8 @@ export function CreateTour() {
                         </div>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button onClick={CreateTour} style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Create</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={()=>CreateTour()}>Create</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}onClick={()=>goBack()}>Back</button>
                         </div>
                     </div>
                 </div>
