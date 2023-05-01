@@ -9,7 +9,7 @@ export function AddSchedule() {
     const schedulesCollectionRef = collection(db, "Schedules");
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const [schedules, setSchedules] = useState('');
+    const [schedules, setSchedules] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
     const TourName = location.state.Tour;
@@ -34,11 +34,11 @@ export function AddSchedule() {
 
     const uploadSchedule = async () => {
         if(start=='' || end==''){
-            console.log('a');
+            alert("You can't enter empty times");
         }
         else{
             if(start>=end){
-                console.log('b');
+                alert("The starting time has to be earlier than the finishing time");
             }
             else{
                 const dateStart = new Date(`1970-01-01T${start}`);
@@ -48,33 +48,34 @@ export function AddSchedule() {
                 const TimeStampStart = Timestamp.fromMillis(unixTimestampStart);
                 const TimeStampEnd = Timestamp.fromMillis(unixTimestampEnd);
                 let found = false;
-                console.log(schedules);
-                for(let i in schedules){
-                    const startStamp = (schedules[i].Start).toDate().toLocaleTimeString('en-US', { hour12: false });
-                    const endStamp = (schedules[i].Finish).toDate().toLocaleTimeString('en-US', { hour12: false });
-                    console.log(startStamp);
-                    const scheduleStart = new Date (`1970-01-01T${startStamp.trim()}`);
-                    const scheduleEnd = new Date (`1970-01-01T${endStamp.trim()}`);
-                    console.log(scheduleStart);
-                    console.log(dateStart);
-                    const schedulesDateS = scheduleStart.getTime();
-                    const schedulesDateF = scheduleEnd.getTime();
-                    if((unixTimestampStart >= schedulesDateS && unixTimestampStart <= schedulesDateF) ||
-                    (unixTimestampEnd >= schedulesDateS && unixTimestampEnd <= schedulesDateF) ||
-                    (unixTimestampStart <= schedulesDateS && unixTimestampEnd >= schedulesDateF )){
-                        found = true;
-                    }
-                }
-                if(found==true){
-                    console.log('no');
+                if (schedules.length==5){
+                    alert("Each tour is only permitted to have 5 schedules");
                 }
                 else{
-                    const data={
-                        Start: TimeStampStart,
-                        Finish: TimeStampEnd,
-                        Tour: TourName
+                    for(let i in schedules){
+                        const startStamp = (schedules[i].Start).toDate().toLocaleTimeString('en-US', { hour12: false });
+                        const endStamp = (schedules[i].Finish).toDate().toLocaleTimeString('en-US', { hour12: false });
+                        const scheduleStart = new Date (`1970-01-01T${startStamp.trim()}`);
+                        const scheduleEnd = new Date (`1970-01-01T${endStamp.trim()}`);
+                        const schedulesDateS = scheduleStart.getTime();
+                        const schedulesDateF = scheduleEnd.getTime();
+                        if((unixTimestampStart >= schedulesDateS && unixTimestampStart <= schedulesDateF) ||
+                        (unixTimestampEnd >= schedulesDateS && unixTimestampEnd <= schedulesDateF) ||
+                        (unixTimestampStart <= schedulesDateS && unixTimestampEnd >= schedulesDateF )){
+                            found = true;
+                        }
                     }
-                    await addDoc(schedulesCollectionRef, data);
+                    if(found==true){
+                        alert('The times you entered conflict with already existing schedules');
+                    }
+                    else{
+                        const data={
+                            Start: TimeStampStart,
+                            Finish: TimeStampEnd,
+                            Tour: TourName
+                        }
+                        await addDoc(schedulesCollectionRef, data);
+                    }
                 }
             }
         }
@@ -84,19 +85,38 @@ export function AddSchedule() {
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
-                <div style={{float: 'right', width: '85%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
+                <div style={{float: 'right', width: '40%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Registration</label>
-                        <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-52px'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px'}}>Starting Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setStart(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setEnd(event.target.value)}/>
+                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Add Schedule</label>
+                        <div style={{float: 'right', width: '70%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative'}}>
+                        <table className="table" style={{ fontFamily: 'Lato', border: '1px solid black', fontSize: '20px'}}>
+                            <thead>
+                                <tr>
+                                    <th>Starting time</th>
+                                    <th>Finishing time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {schedules.map((schedule) => (
+                                <tr key={schedule.id}>
+                                    <td>{schedule.Start}</td>
+                                    <td>{schedule.Finish}</td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                            <div style={{display: 'flex', flexDirection: 'horizontal'}}>
+                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '-25px'}}>Starting Time</label>
+                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '8px'}}>Finishing Time</label>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'horizontal'}}>
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '25px', position: 'relative'}} onChange={(event)=>setStart(event.target.value)}/>
+                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '25px', position: 'relative'}} onChange={(event)=>setEnd(event.target.value)}/>
+                            </div>
                         </div>
-                        <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => uploadSchedule()}>Modify</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goBack()}>Back</button>
-                        </div>
+                           <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => uploadSchedule()}>Modify</button>
+                           <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => goBack()}>Back</button>
+                        
                     </div>
                 </div>
             </div>

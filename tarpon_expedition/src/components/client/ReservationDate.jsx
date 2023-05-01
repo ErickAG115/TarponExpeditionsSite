@@ -24,6 +24,7 @@ export function ReservationDate() {
     const schedule = location.state.schedule;
     const tour = location.state.tour;
     const price = location.state.price;
+    const tourName = location.state.tourName;
 
     // Data from login
     const idUser = location?.state?.idUser;
@@ -74,7 +75,11 @@ export function ReservationDate() {
     const getSchedules = async () => {
         const data = await getDocs(schedulesCollectionRef);
         const schedules = data.docs
-          .map((doc) => ({ ...doc.data(), id: doc.id }));
+          .map((doc) => ({ ...doc.data(), id: doc.id }))
+          .filter(
+            (schedule) =>
+              schedule.Tour == tourName
+          );
         setSchedules(schedules);
     };
     useEffect(() => {
