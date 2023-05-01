@@ -20,6 +20,7 @@ import { Paypal } from "./components/client/paypal";
 import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
 import { ClientReservations } from "./components/client/ClientReservations";
+import { ChangePassword } from "./components/client/ChangePassword";
 import { TourManagement } from "./components/admin/TourManagement";
 import { AddSchedule } from "./components/admin/AddSchedule";
 
@@ -51,6 +52,7 @@ export function App() {
           <Route exact path="/ClientReservations" element={<ClientReservations />} />
           <Route exact path="/TourManagement" element={<TourManagement />} />
           <Route exact path="/AddSchedule" element={<AddSchedule />} />
+          <Route exact path="/ChangePassword" element={<ChangePassword />} />
         </Routes>
       </div>
     </Router>
