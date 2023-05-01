@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { db } from "../../firebase";
+import { db, uploadFile } from "../../firebase";
 import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
 
 export function ModifyTour() {
 
     const toursCollectionRef = collection(db, "Tours");
     const schedulesCollectionRef = collection(db, "Schedules");
+    const [originalTourName, setoriginalTourName] = useState('');
     const [tourName, setTourName] = useState('');
     const [type, setType] = useState('');
     const [price, setPrice] = useState('');
@@ -20,6 +21,7 @@ export function ModifyTour() {
     const [tours, setTours] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const [file, setFile] = useState(null);
     const Tour = location.state.Tour;
     const tour = doc(db, "Tours", Tour);
 
@@ -51,6 +53,7 @@ export function ModifyTour() {
         setPrice(TourDOC.data().Price);
         setSelectedCheckboxes(TourDOC.data().Techniques);
         setTourName(TourDOC.data().Name);
+        setoriginalTourName(TourDOC.data().Name);
         const checkBoxesChecked = TourDOC.data().Techniques;
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -77,10 +80,6 @@ export function ModifyTour() {
         console.log(selectedCheckboxes);
       };
 
-    const getCheckboxes = () => {
-        console.log(selectedCheckboxes);
-    };
-
     const uploadTour = async () => {
         if(tourName=='' || type=='' || price=='' || description=='' || selectedCheckboxes==[] || place==''){
             console.log('a');
@@ -88,7 +87,7 @@ export function ModifyTour() {
         else{
             let found = false;
             for(let i in tours){
-                if(tours[i].Name == tourName){
+                if(tours[i].Name == tourName && originalTourName != tourName){
                     found=true;
                 }
             }
@@ -103,17 +102,32 @@ export function ModifyTour() {
                 const unixTimestampEnd = dateEnd.getTime();
                 const startStamp = Timestamp.fromMillis(unixTimestampStart);
                 const endStamp = Timestamp.fromMillis(unixTimestampEnd);
-                const dataTour = {
-                    Name: tourName,
-                    Type: type,
-                    Price: price,
-                    Description: description,
-                    Deleted: false,
-                    Place: place,
-                    Techniques: selectedCheckboxes
-                };
-                console.log('aaaa');
-                await updateDoc(tour, dataTour);
+                if(file==null || file==""){
+                    const dataTour = {
+                        Name: tourName,
+                        Type: type,
+                        Price: price,
+                        Description: description,
+                        Deleted: false,
+                        Place: place,
+                        Techniques: selectedCheckboxes
+                    };
+                    await updateDoc(tour, dataTour);
+                }
+                else{
+                    const URL = await uploadFile(file);
+                    const dataTour = {
+                        Name: tourName,
+                        Type: type,
+                        Price: price,
+                        Description: description,
+                        Deleted: false,
+                        Place: place,
+                        Image: URL,
+                        Techniques: selectedCheckboxes
+                    };
+                    await updateDoc(tour, dataTour);
+                }
             }
         }
     }
@@ -144,7 +158,7 @@ export function ModifyTour() {
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
                                 <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setEnd(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
-                                <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event)=>setPicture(event.target.value)}/>
+                                <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event) => setFile(event.target.files[0])}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-46px', marginTop:'10px'}}>Techniques</label>
                                 <div style={{display:'flex', flexDirection:'column'}}>
                                 <div style={{position: 'relative', left:'-40px'}}>
@@ -156,8 +170,8 @@ export function ModifyTour() {
                                 <label for="JiggingFast" style={{fontFamily: 'lato', fontSize: '20px'}}>JiggingFast</label>
                                 </div>
                                 <div style={{position: 'relative', left:'-40px'}}>
-                                <input type='checkbox' id="Trolling" name='Trolling' value='Trolling' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
-                                <label for="Trolling" style={{fontFamily: 'lato', fontSize: '20px'}}>Trolling</label>
+                                <input type='checkbox' id="Troling" name='Troling' value='Troling' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
+                                <label for="Troling" style={{fontFamily: 'lato', fontSize: '20px'}}>Troling</label>
                                 </div>
                                 <div style={{position: 'relative', left:'-40px'}}>
                                 <input type='checkbox' id="LiveBait" name='LiveBait' value='LiveBait' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
