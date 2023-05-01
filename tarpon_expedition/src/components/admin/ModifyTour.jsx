@@ -13,10 +13,7 @@ export function ModifyTour() {
     const [type, setType] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
     const [place, setPlace] = useState('');
-    const [picture, setPicture] = useState([]);
     const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
     const [tours, setTours] = useState([]);
     const navigate = useNavigate();
@@ -96,12 +93,6 @@ export function ModifyTour() {
             }
 
             else{
-                const dateStart = new Date(`1970-01-01T${start}`);
-                const dateEnd = new Date(`1970-01-01T${end}`);
-                const unixTimestampStart = dateStart.getTime();
-                const unixTimestampEnd = dateEnd.getTime();
-                const startStamp = Timestamp.fromMillis(unixTimestampStart);
-                const endStamp = Timestamp.fromMillis(unixTimestampEnd);
                 if(file==null || file==""){
                     const dataTour = {
                         Name: tourName,
@@ -153,10 +144,6 @@ export function ModifyTour() {
                                 <textarea id="Password" value={description} style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} onChange={(event)=>setDescription(event.target.value)}/>
                         </div>
                         <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-52px'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px'}}>Starting Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setStart(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} onChange={(event)=>setEnd(event.target.value)}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
                                 <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event) => setFile(event.target.files[0])}/>
                                 <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-46px', marginTop:'10px'}}>Techniques</label>
