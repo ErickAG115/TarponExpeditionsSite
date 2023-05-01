@@ -24,6 +24,15 @@ export function TourManagement() {
         navigate('/ModifyTour',{state:{Tour: tour}});
     }
 
+    const eliminateTour = async (tour) =>{
+        const TourDOC = await doc(db, "Tours", tour);
+        const dataTour = {
+            Deleted: true
+        }
+        await updateDoc(TourDOC, dataTour);
+        getTours();
+    }
+
   useEffect(() => {
     getTours();;
   }, []);
@@ -32,6 +41,10 @@ export function TourManagement() {
 
     const goCreate = () =>{
         navigate('/CreateTour',{});
+    }
+
+    const goSchedule = (tour) =>{
+        navigate('/AddSchedule',{state:{Tour: tour}});
     }
     
     const goBack = () =>{
@@ -62,7 +75,9 @@ export function TourManagement() {
                                     <td>{(tour.Techniques).join(', ')}</td>
                                     <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goModify(tour.id)}>Modify
                                     </button></td>
-                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}}>Eliminate
+                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goSchedule(tour.Name)}>Add Schedule
+                                    </button></td>
+                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateTour(tour.id)}>Eliminate
                                     </button></td>
                                 </tr>
                                 ))}

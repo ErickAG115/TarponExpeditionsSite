@@ -22,6 +22,16 @@ export function ClientReservations() {
         console.log(reservationsCollectionRef);
     };
 
+    const eliminateReservation = async (reservation) =>{
+        const ReservationDOC = doc(db, "Reservations", reservation);
+        const data = {
+            deleted: true
+        }
+        console.log(reservation);
+        await updateDoc(ReservationDOC, data);
+        getReservations();
+    }
+
   useEffect(() => {
     getReservations();;
   }, []);
@@ -63,7 +73,7 @@ export function ClientReservations() {
                                     <td>{reservation.Price}</td>
                                     <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}}>Details
                                     </button></td>
-                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}}>Cancel
+                                    <td><button style={{color:'white',width:'80%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateReservation(reservation.id)}>Cancel
                                     </button></td>
                                 </tr>
                                 ))}

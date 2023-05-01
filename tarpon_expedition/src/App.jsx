@@ -21,6 +21,7 @@ import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
 import { ClientReservations } from "./components/client/ClientReservations";
 import { TourManagement } from "./components/admin/TourManagement";
+import { AddSchedule } from "./components/admin/AddSchedule";
 
 
 
@@ -49,6 +50,7 @@ export function App() {
           <Route exact path="/ReservationPayment" element={<ReservationPayment />} />
           <Route exact path="/ClientReservations" element={<ClientReservations />} />
           <Route exact path="/TourManagement" element={<TourManagement />} />
+          <Route exact path="/AddSchedule" element={<AddSchedule />} />
         </Routes>
       </div>
     </Router>
