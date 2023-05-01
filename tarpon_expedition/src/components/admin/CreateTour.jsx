@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, uploadFile } from "../../firebase";
-import { addDoc, collection, getDocs, where, query  } from "firebase/firestore";
+import { addDoc, collection, getDocs, where, query, Timestamp  } from "firebase/firestore";
 
 export function CreateTour() {
 
@@ -59,7 +59,16 @@ export function CreateTour() {
             else if(techniques.length == 0){
                 alert('No puede ingresar datos vacios');
             }
+            else if(startingTime>=finishingTime){
+                alert("The starting time has to be earlier than the finishing time");
+            }
             else{
+                const dateStart = new Date(`1970-01-01T${startingTime}`);
+                const dateEnd = new Date(`1970-01-01T${finishingTime}`);
+                const unixTimestampStart = dateStart.getTime();
+                const unixTimestampEnd = dateEnd.getTime();
+                const TimeStampStart = Timestamp.fromMillis(unixTimestampStart);
+                const TimeStampEnd = Timestamp.fromMillis(unixTimestampEnd);
                 const URL = await uploadFile(file);
                 const dataTour = {
                     Name: newNameTour,
@@ -73,8 +82,8 @@ export function CreateTour() {
                 };
                 const dataSchedules ={
                     Tour: newNameTour,
-                    Start: startingTime,
-                    Finish: finishingTime
+                    Start: TimeStampStart,
+                    Finish: TimeStampEnd
                 }
                 await addDoc(toursCollectionRef, dataTour);
                 await addDoc(schedulesCollectionRef, dataSchedules);

@@ -23,7 +23,8 @@ export function ReservationDate() {
     const packageChosen = location.state.package;
     const schedule = location.state.schedule;
     const tour = location.state.tour;
-    const price = location.state.price;
+    //const price = location.state.price;
+    const price = location.state.tourPrice;
     const tourName = location.state.tourName;
 
     // Data from login
@@ -50,7 +51,7 @@ export function ReservationDate() {
     //const tour = 'tour name';
 
     const goToCompanions = () => {
-         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tour, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price)}});
+         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tourName, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price)}});
     }
 
     const navigateTours = () => {
@@ -108,14 +109,14 @@ export function ReservationDate() {
         const formattedDate = localDate.toLocaleDateString(undefined, { timeZone: 'UTC' });
         for(let i in schedules){
             found = false;
-            if(schedules[i].Tour == tour){
+            if(schedules[i].Tour == tourName){
                 const dateStart = (schedules[i].Start).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 const dateFinish = (schedules[i].Finish).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 for(let k in reservations){
                     const resStart = (reservations[k].start).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     const resEnd = (reservations[k].end).toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     const resDate = (reservations[k].start).toDate().toLocaleDateString();
-                    if(dateStart==resStart && dateFinish==resEnd && resDate==formattedDate && tour == reservations[k].Tour){
+                    if(dateStart==resStart && dateFinish==resEnd && resDate==formattedDate && tourName == reservations[k].Tour){
                         console.log('found');
                         found = true;
                     }
