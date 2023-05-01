@@ -89,7 +89,7 @@ export function CreateTour() {
                 await addDoc(schedulesCollectionRef, dataSchedules);
                 alert('Creación de Tour exitosa');
                 /* REALIZAR CAMBIO, DEBE DIRIRGIRLO A MANAGE TOURS -------------------------------- IMPORTANTE ---------------------------------*/
-                navigate('/AdminMenu',{});
+                navigate('/TourManagemet',{});
             }
 
         } catch(error){
@@ -223,7 +223,7 @@ export function CreateTour() {
                         </div>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Create</button>
+                           <button onClick={CreateTour} style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Create</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
                         </div>
                     </div>
