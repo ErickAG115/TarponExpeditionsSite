@@ -1,18 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./MainPageStyle.css";
 
 
 export function MainPage() {
+
+    const location = useLocation();
     const pageNumber = 1; 
     
     const navigate = useNavigate();
 
-    const handleHome = () =>{
-        navigate('/',{});
-    }
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
 
+    
     const handleTour = () =>{
         navigate('/Tours',{});
     }
@@ -46,7 +52,7 @@ export function MainPage() {
                 <div class='navbar'>
                     <img src={require('./logoNegro.png')} class = 'logo'/>
                         <ul>
-                            <li><button onClick={handleHome} style= {{color: '#fff'}}> Home </button></li>
+                            <li><button style= {{color: '#fff'}}> Home </button></li>
                             <li><button onClick={handleTour} style= {{color: '#fff'}}> Tours </button></li>
                             <li><button onClick={handleAbout} style= {{color: '#fff'}}> About </button></li>
                             <li><button onClick={handleContact} style= {{color: '#fff'}}> Contact </button></li>
