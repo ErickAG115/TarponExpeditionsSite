@@ -104,6 +104,8 @@ export function ModifyTour() {
                         Techniques: selectedCheckboxes
                     };
                     await updateDoc(tour, dataTour);
+                    alert('The tour was modified succesfully');
+                    goBack();
                 }
                 else{
                     const URL = await uploadFile(file);
@@ -118,6 +120,8 @@ export function ModifyTour() {
                         Techniques: selectedCheckboxes
                     };
                     await updateDoc(tour, dataTour);
+                    alert('The tour was modified succesfully');
+                    goBack();
                 }
             }
         }
