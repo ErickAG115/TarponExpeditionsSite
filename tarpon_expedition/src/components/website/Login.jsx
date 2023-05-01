@@ -87,8 +87,13 @@ export function Login() {
                                             idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
                                             tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
                     }
-
-                    console.log("NO ENTRO AQUI");
+                    //IF THE USER LOGIN FROM TOUR INFO (MY ACCOUNT)
+                    else if(pageNumber == 5){
+                        console.log("Inicio de sesión desde Tour Info exitoso");
+                        navigate('/TourInfo',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+                                            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                                            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
+                    }
                 }
             }
         }
@@ -104,7 +109,7 @@ export function Login() {
     };
 
     const handleTour = () =>{
-        navigate('/Login',{});
+        navigate('/Tours',{});
     };
 
     const handleAbout = () =>{
@@ -142,7 +147,7 @@ export function Login() {
                             <li><button style= {{color: '#fff'}}> ABOUT </button></li>
                             <li><button style= {{color: '#fff'}}> CONTACT </button></li>
                             <li><button style= {{color: '#fff'}}> LOGIN </button></li>
-                            <li><button onClick={handleMyAccount} style= {{color: '#fff'}}>MY ACCOUNT</button></li>
+                            <li><button style= {{color: '#fff'}}>MY ACCOUNT</button></li>
                         </ul>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',}}>

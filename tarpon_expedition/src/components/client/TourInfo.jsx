@@ -36,12 +36,28 @@ export function TourInfo() {
 
     const handleLogin = () =>{
         const pageNumber = 4;
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
         navigate('/Login',{state:{pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
                             tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
+        }
+        else{
+            alert("You've already Login");
+        }
     }
 
     const handleMyAccount = () =>{
-        navigate('/ClientMenu',{});
+        // VALIDATE THAT THE USER HAS ALREADY LOGIN
+        // ANY OTHER CASE, SEND HIM TO LOGIN
+        const pageNumber = 5;
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
+        }
+        else{
+            navigate('/ClientMenu',{state:{pageNumber: pageNumber, idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, 
+                idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
     }
 
     const startBook = () => {

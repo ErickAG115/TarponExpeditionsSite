@@ -1,13 +1,47 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../website/MainPageStyle.css";
 
 export function ClientMenu() {
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    //Data received from other page
+    const pageNumber = location?.state?.pageNumber;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
+
     const handleBack = () =>{
-        // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
-        // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
+        //IF THE USER COMES FROM TOURS CATALOG
+        if(pageNumber == 2){
+            navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
+        //IF THE USER COMES FROM TOUR INFO
+        else if(pageNumber == 5){
+            navigate('/TourInfo',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+                idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+                tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
+        }
+    }
+
+    const handleLogout = () =>{
         navigate('/',{});
     }
     return (
@@ -20,6 +54,7 @@ export function ClientMenu() {
                     <div style={{float: 'right', width: '65%', height:'90%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{background: 'transparent', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
                             <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px', color:'#fff'}}>User Information</label>
+                            <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}} onClick={handleLogout}>Logout</button>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}}>Check Reservations</button>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'20px'}}>Change Password</button>
                         </div>

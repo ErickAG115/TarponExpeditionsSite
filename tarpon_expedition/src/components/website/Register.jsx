@@ -78,7 +78,7 @@ export function Register() {
     }
 
     const handleTour = () =>{
-        navigate('/Login',{});
+        navigate('/Tours',{});
     }
 
     const handleAbout = () =>{

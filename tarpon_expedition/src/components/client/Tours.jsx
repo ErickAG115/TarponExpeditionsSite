@@ -52,13 +52,23 @@ export function Tours() {
     }
 
     const handleLogin = () =>{
-        navigate('/Login',{state:{pageNumber: pageNumber}});
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});    
+        }
+        else{
+            alert("You've already Login")
+        }
     }
 
     const handleMyAccount = () =>{
-        // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
-        // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
-        navigate('/ClientMenu',{});
+        // VALIDATE THAT THE USER HAS ALREADY LOGIN
+        // ANY OTHER CASE, SEND HIM TO LOGIN
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});
+        }
+        else{
+            navigate('/ClientMenu',{state:{pageNumber: pageNumber, idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
     }
 
     const handleSeeMore = (idTour,tourName,imgTour,tourPlace,tourType,tourTech,tourPrice,tourDescription) =>{
