@@ -11,7 +11,6 @@ export function ClientReservations() {
     const reservationsCollectionRef = collection(db, "Reservations");
     const user='user';
 
-
     const getReservations = async () => {
         const data = await getDocs(reservationsCollectionRef);
         const reservationsDoc = data.docs

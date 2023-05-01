@@ -12,7 +12,7 @@ export function Checkout() {
     const datePicked = location.state.date;
     const packagePicked = location.state.package;
     const schedule = location.state.schedule;
-    const totalPrice = location.state.totalPrice;
+    const totalPriceVar = location.state.totalPrice;
     const adults = location.state.adults;
     const seniors = location.state.seniors;
     const children = location.state.children;
@@ -23,11 +23,25 @@ export function Checkout() {
     const CVVC = location.state.CVV;
     const ExpDate = location.state.ExpDate
     const tour = location.state.tour;
+    const [totalPrice, setTotalPrice] = useState('');
     const [schedulePicked, setSchedulePicked] = useState('');
     const [companions, setCompanions] = useState('');
     const schedulesDocRef = doc(db, 'Schedules', schedule);
 
     const navigate = useNavigate();
+
+    const getTotalPrice = () =>{
+        if(packagePicked=='Premium'){
+            setTotalPrice(totalPriceVar+20);
+        }
+        else{
+            setTotalPrice(totalPriceVar);
+        }
+    }
+
+    useEffect(() => {
+        getTotalPrice();
+      }, []); 
 
     const goBack = () => {
         if(paymentMethod=="card"){
