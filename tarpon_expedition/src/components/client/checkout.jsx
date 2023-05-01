@@ -23,7 +23,8 @@ export function Checkout() {
     const CVVC = location.state.CVV;
     const ExpDate = location.state.ExpDate
     const tour = location.state.tour;
-    const schedulePicked = location.state.schedule;
+    const [schedulePicked, setSchedulePicked] = useState('');
+    const [companions, setCompanions] = useState('');
     const schedulesDocRef = doc(db, 'Schedules', schedule);
 
     const navigate = useNavigate();
@@ -38,6 +39,50 @@ export function Checkout() {
         }
         
     }
+
+    const scheduleString = async () =>{
+        const gotSchedule = await getDoc(schedulesDocRef);
+        const docDataStart = gotSchedule.get('Start');
+        const docDataFin = gotSchedule.get('Finish');
+        const Start = docDataStart.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const Fin = docDataFin.toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        setSchedulePicked(`${Start} to ${Fin}`);
+    }
+
+    useEffect(() => {
+        scheduleString();
+      }, []);   
+
+    const companionString = async () =>{
+        if(adults == 0 && seniors == 0 && children == 0){
+            setCompanions('No extra companions');
+        }
+        if(adults != 0 && seniors == 0 && children == 0){
+            setCompanions(`Adults: ${adults}`);
+        }
+        if(adults == 0 && seniors != 0 && children == 0){
+            setCompanions(`Seniors: ${seniors}`);
+        }
+        if(adults == 0 && seniors == 0 && children != 0){
+            setCompanions(`Children: ${children}`);
+        }
+        if(adults != 0 && seniors != 0 && children == 0){
+            setCompanions(`Adults: ${adults} - Seniors: ${seniors}`);
+        }
+        if(adults != 0 && seniors == 0 && children != 0){
+            setCompanions(`Adults: ${adults} - Children: ${children}`);
+        }
+        if(adults == 0 && seniors != 0 && children != 0){
+            setCompanions(`Seniors: ${seniors} - Children: ${children}`);
+        }
+        if(adults != 0 && seniors != 0 && children != 0){
+            setCompanions(`Adults: ${adults} - Seniors: ${seniors} - Children: ${children}`);
+        }
+    }
+
+    useEffect(() => {
+        companionString();
+      }, []);   
 
     const checkOut = async () => {
         const gotSchedule = await getDoc(schedulesDocRef);
@@ -64,25 +109,24 @@ export function Checkout() {
             Price: totalPrice,
             Tour: tour,
             User: 'testing',
-            adults: adults,
-            seniors: seniors,
-            children: children,
+            Companions: companions,
             deleted: false,
             end: dateEnd,
             start: dateStart
 
         };
-        console.log(data);
+        alert('Your reservation was registered successfully, you will now be redirected to your reservations window');
         addDoc(reservationsCollectionRef, data);
+        //navigate('/ClientReservations');
     }
 
     useEffect(() => {
         if(paymentMethod=="card"){
             const lastCardNumbers = cardNumber.slice(-4);
-            setMethodMessage(`Credit/Debit card ending in ${lastCardNumbers}`);
+            setMethodMessage(`Paid with Credit/Debit\ncard ending in ${lastCardNumbers}`);
         }
         else{
-            setMethodMessage(`Paypal account with the email ${email}`);
+            setMethodMessage(`Paid with Paypal account\nwith the email ${email}`);
         }
       }, []);
 
@@ -92,9 +136,13 @@ export function Checkout() {
                 <div style={{float: 'right', width: '60%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
                         <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Summary and Checkout</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>{datePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>{methodMessage}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>{totalPrice}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{tour}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{datePicked}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedulePicked}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{methodMessage}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => checkOut()}>Next</button>
