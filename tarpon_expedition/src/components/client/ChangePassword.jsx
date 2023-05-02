@@ -15,8 +15,25 @@ export function ChangePassword() {
     const [newPsswrd, setNewPsswrd] = useState("");
     const [confirmPsswrd, setConfirmPsswrd] = useState("");
 
-    const userID = location.state.User;
-    const user = doc(db, "Users", userID);
+    const pageNumber = location?.state?.pageNumber;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
+    const user = doc(db, "Users", idUser);
 
     const handleHome = () =>{
         navigate('/',{});
@@ -49,8 +66,14 @@ export function ChangePassword() {
         navigate('/Register',{});
     };
 
+    const handleBack = () =>{
+        navigate('/ClientMenu',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}})
+    }
+
     const changePassword = async () =>{
-        const UserDOC = await getDoc(doc(db, "Users", userID));
+        const UserDOC = await getDoc(doc(db, "Users", idUser));
         if(currentPsswrd == "" || newPsswrd == "" || confirmPsswrd == ""){
             alert("You can't leave any empty areas");
         }
@@ -72,15 +95,13 @@ export function ChangePassword() {
                         }
                         await updateDoc(user, data);
                         alert('Your password was changed succesfully');
+                        handleBack();
                     }
                 }
             }
         }
     }
 
-    const goBack = () =>{
-        navigate('/ClientMenu',{});
-    }
 
     return (
         <Fragment>
@@ -122,7 +143,7 @@ export function ChangePassword() {
 
                             <div style={{height:'20%', width:'70%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                                 <button onClick={changePassword} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Confirm</button>
-                                <button onClick={handleSignUp} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
+                                <button onClick={handleBack} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,27 @@ export function ClientReservations() {
 
     const [reservations, setReservations] = useState([]);
     const reservationsCollectionRef = collection(db, "Reservations");
-    const user='user';
+   
+    //Data received from other page
+    const pageNumber = location?.state?.pageNumber;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+    const user = `${firstName} ${lastName}`;
+
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
 
     const getReservations = async () => {
         const data = await getDocs(reservationsCollectionRef);
@@ -31,6 +51,12 @@ export function ClientReservations() {
         getReservations();
     }
 
+    const handleMenu = () =>{
+        navigate('/ClientMenu',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}})
+    }
+
   useEffect(() => {
     getReservations();;
   }, []);
@@ -42,13 +68,15 @@ export function ClientReservations() {
     }
 
     const goDetails = (reserv) =>{
-        navigate('/ReservationInfoClient',{state:{Reservation: reserv}});
+        navigate('/ReservationInfoClient',{state:{Reservation: reserv, idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}});
     }
     return (
         <Fragment>
             <div className='banner'>
                 <button style={{background:'transparent',border:'none'}}>
-                    <img onClick={handleBack} src={require('../website/icons8-go-back-64.png')} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
+                    <img onClick={handleMenu} src={require('../website/icons8-go-back-64.png')} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
                 </button>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
                     <div style={{float: 'right', width: '90%', height:'110%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>

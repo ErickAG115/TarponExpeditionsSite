@@ -18,9 +18,33 @@ export function ReservationInfoClient() {
 
     const navigate = useNavigate();
 
+    //Data received from other page
+    const pageNumber = location?.state?.pageNumber;
+
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Tours userData', idUser,email,firstName,lastName);
+
+    // Data from the tour that have been selected
+    const idTour = location?.state?.idTour;
+    const tourName = location?.state?.tourName;
+    const imgTour = location?.state?.imgTour;
+    const tourPlace = location?.state?.tourPlace;
+    const tourType = location?.state?.tourType;
+    const tourTech = location?.state?.tourTech;
+    const tourPrice = location?.state?.tourPrice;
+    const tourDescription = location?.state?.tourDescription;
+
     const goBack = () => {
-        navigate('/ClientReservations',{})        
+        navigate('/ClientReservations',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}})        
     }
+
+    
 
     const setValues = async () =>{
         const gotReservation = await getDoc(reservation);
