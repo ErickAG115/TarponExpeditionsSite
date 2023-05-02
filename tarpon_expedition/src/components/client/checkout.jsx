@@ -156,9 +156,9 @@ export function Checkout() {
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{datePicked}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedulePicked}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked} package</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{methodMessage}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{totalPrice}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Final price: ${totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => checkOut()}>Next</button>

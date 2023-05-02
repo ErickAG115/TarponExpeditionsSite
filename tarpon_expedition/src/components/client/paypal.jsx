@@ -19,7 +19,7 @@ export function Paypal() {
     const tour = location.state.tour;
 
     const navigate = useNavigate();
-    const emailRegex = new RegExp('^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+    const emailRegex = new RegExp(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
 
     const goCheckout = () => {
       console.log(password);

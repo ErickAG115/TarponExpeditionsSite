@@ -10,6 +10,7 @@ export function ReservationDate() {
     const [datePicked, setDatePicked] = useState("");
     const [packagePicked, setPackagePicked] = useState("");
     const [schedulePicked, setSchedulePicked] = useState("");
+    const [scheduleText, setScheduleText] = useState("");
     const [schedules, setSchedules] = useState([]);
     const [reservations, setReservations] = useState([]); 
     const [tours, setTours] = useState([]);
@@ -137,6 +138,11 @@ export function ReservationDate() {
         setDatePicked(e);
       }
 
+      const handleSchedulePicked = (schedule, text) =>{
+        setSchedulePicked(schedule);
+        setScheduleText(text);
+      }
+
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
@@ -145,17 +151,18 @@ export function ReservationDate() {
                         <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Choose a package and Schedule</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Pick a date to display available schedules</label>
                         <input type="date" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', position: 'relative', top: '-20px'}} onChange={(event) =>{handleDate(event.target.value);}}/>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Schedules</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Choose a schedule: {scheduleText}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
                             {schedulesFiltered.map((filteredSchedules) => (
-                                <button key={filteredSchedules.id} value={filteredSchedules.id} style={{ fontSize: '20px', height:'30%',width:'30%', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', margin: '4px'}} onClick={() => setSchedulePicked(filteredSchedules.id)}>{filteredSchedules.text}</button>
+                                <button key={filteredSchedules.id} value={filteredSchedules.id} style={{ fontSize: '20px', height:'30%',width:'30%', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', margin: '4px'}} onClick={() => handleSchedulePicked(filteredSchedules.id, filteredSchedules.text)}>{filteredSchedules.text}</button>
                             ))}
                         </div>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Choose a package</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Choose a package: {packagePicked}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', position: 'relative', top: '-20px'}}>
                             <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px', position: 'relative', top: '10px'}} onClick={() => setPackagePicked('Standard')} >Standard</button>
                             <button style={{width:'15%', height:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px', position: 'relative', top: '10px'}} onClick={() => setPackagePicked('Premium')}>Premium</button>
                         </div>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-10px'}}>Premium package is an addtional $20</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => {navigateTours()}}>Cancel</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => {goToCompanions()}}>Next</button>

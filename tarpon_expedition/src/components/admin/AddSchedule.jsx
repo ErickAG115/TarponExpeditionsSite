@@ -109,7 +109,7 @@ export function AddSchedule() {
                             </tbody>
                         </table>
                             <div style={{display: 'flex', flexDirection: 'horizontal'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '-25px'}}>Starting Time</label>
+                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '2px'}}>Starting Time</label>
                                 <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '8px'}}>Finishing Time</label>
                             </div>
                             <div style={{display: 'flex', flexDirection: 'horizontal'}}>
