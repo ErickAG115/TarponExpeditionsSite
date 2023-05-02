@@ -138,7 +138,7 @@ export function Checkout() {
         };
         alert('Your reservation was registered successfully, you will now be redirected to your reservations window');
         addDoc(reservationsCollectionRef, data);
-        //navigate('/ClientReservations');
+        navigate('/Tours', {state:{idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}});
     }
 
     useEffect(() => {
