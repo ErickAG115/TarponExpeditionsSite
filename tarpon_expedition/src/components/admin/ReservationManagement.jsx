@@ -56,6 +56,7 @@ export function ReservationManagement() {
                                 <thead>
                                     <tr>
                                         <th>User</th>
+                                        <th>Email</th>
                                         <th>Tour Name</th>
                                         <th>Date</th>
                                         <th>Start Time</th>
@@ -69,6 +70,7 @@ export function ReservationManagement() {
                                 {reservations.map((reservation) => (
                                 <tr key={reservation.id}>
                                     <td>{reservation.User}</td>
+                                    <td>{reservation.Email}</td>
                                     <td>{reservation.Tour}</td>
                                     <td>{(reservation.start).toDate().toLocaleDateString()}</td>
                                     <td>{(reservation.start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>

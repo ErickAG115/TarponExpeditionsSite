@@ -21,6 +21,7 @@ export function Card() {
     const tour = location.state.tour;
     const CreditNumber = location.state.CreditCardNumber;
     const CVVCode = location.state.CVV;
+    const price = location.state.price;
     console.log(CVVCode);
     const Month = location.state.ExpDate;
     const Year = location.state.ExpDate;
@@ -99,6 +100,10 @@ export function Card() {
         setYear(e.target.value);
     }
 
+    const goBack = () =>{
+      navigate('/ReservationPayment', {state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price}})
+    }
+
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
@@ -115,7 +120,7 @@ export function Card() {
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>CVV</label>
                         <input value={CVV} type="text" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', textAlign: 'center', position: 'relative', top: '-20px', padding: '6px 12px'}} maxLength="4" onChange={handleCVV}/>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goCheckout()}>Next</button>
                         </div>
                     </div>

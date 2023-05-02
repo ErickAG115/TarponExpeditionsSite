@@ -52,7 +52,6 @@ export function Checkout() {
 
     const goBack = () => {
         if(paymentMethod=="card"){
-            console.log(CVVC);
             navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
                                         idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
         }
@@ -60,7 +59,6 @@ export function Checkout() {
             navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
                                         idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
         }
-        
     }
 
     const scheduleString = async () =>{
@@ -121,19 +119,17 @@ export function Checkout() {
         //const isoDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
         const dateStartStr = `${datePicked}T${Start}.000`;
         const dateFinStr = `${datePicked}T${Fin}.000`;
-        console.log(dateStartStr);
         const TStampStart = new Date(dateStartStr);
         const TStampEnd = (new Date(dateFinStr)).getTime();
         const dateStart = Timestamp.fromMillis(TStampStart);
         const dateEnd = Timestamp.fromMillis(TStampEnd);
-        console.log('ESTOOOO', TStampStart);
-        console.log(dateStart);
-        console.log(dateEnd);
+        const fullName = `${firstName} ${lastName}`
         const data ={
             Package: packagePicked,
             Price: totalPrice,
             Tour: tour,
-            User: emailUser,
+            User: fullName,
+            Email: emailUser,
             Companions: companions,
             deleted: false,
             end: dateEnd,
@@ -142,7 +138,7 @@ export function Checkout() {
         };
         alert('Your reservation was registered successfully, you will now be redirected to your reservations window');
         addDoc(reservationsCollectionRef, data);
-        //navigate('/ClientReservations');
+        navigate('/Tours', {state:{idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}});
     }
 
     useEffect(() => {

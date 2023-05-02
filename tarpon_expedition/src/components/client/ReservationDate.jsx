@@ -46,8 +46,13 @@ export function ReservationDate() {
     //const tour = 'tour name';
 
     const goToCompanions = () => {
+      if(datePicked == "" || packageChosen== "" || schedulePicked == ""){
+        alert("Make sure you picked a date, a package and a schedule");
+      }
+      else{
          navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tourName, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price),
                                             idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+      }
     }
 
     const navigateTours = () => {
