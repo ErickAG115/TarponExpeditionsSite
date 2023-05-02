@@ -34,7 +34,7 @@ export function ReservationDate() {
     const email = location?.state?.email;
     const firstName = location?.state?.firstName;
     const lastName = location?.state?.lastName;
-    console.log('userData', idUser,email,firstName,lastName);
+    console.log('Reserv.Date, userData', idUser,email,firstName,lastName);
 
 
     useEffect(() => {
@@ -46,7 +46,8 @@ export function ReservationDate() {
     //const tour = 'tour name';
 
     const goToCompanions = () => {
-         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tourName, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price)}});
+         navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedulePicked, tour: tourName, totalPrice: parseInt(price), adults: 0, seniors: 0, children: 0, price:parseInt(price),
+                                            idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const navigateTours = () => {

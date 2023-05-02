@@ -19,16 +19,26 @@ export function ReservationPayment() {
     const tour = location.state.tour;
     const navigate = useNavigate();
 
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Reserv.Payment, userData', idUser,email,firstName,lastName);
+
     const navigateCard = () => {
-        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '1', CVV: '', ExpDate: ''}})
+        navigate('/card',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children, PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: '1', CVV: '', ExpDate: '',
+                                    idUser: idUser, email: email, firstName: firstName, lastName: lastName}})
     }
 
     const navigatePaypal = () => {
-        navigate('/paypal',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children}})
+        navigate('/paypal',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, price: price, adults: adults, seniors: seniors, children: children,
+                                    idUser: idUser, email: email, firstName: firstName, lastName: lastName}})
     }
 
     const goBack = () => {
-        navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, price: price, adults: adults, seniors: seniors, children: children, totalPrice: totalPrice}});
+        navigate('/ReservationCompanions',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, price: price, adults: adults, seniors: seniors, children: children, totalPrice: totalPrice,
+                                                    idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     console.log(datePicked);

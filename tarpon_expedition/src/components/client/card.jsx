@@ -25,11 +25,19 @@ export function Card() {
     const Month = location.state.ExpDate;
     const Year = location.state.ExpDate;
 
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Card, userData', idUser,email,firstName,lastName);
+
     const navigate = useNavigate();
 
     const goCheckout = () => {
       if(creditCardNumber !='' || CVV != '' || month !='' || year !=''){
-        navigate('/checkout',{state: { PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: creditCardNumber, CVV: CVV, ExpDate: `${month}/${year}`,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+        navigate('/checkout',{state: { PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: creditCardNumber, CVV: CVV, ExpDate: `${month}/${year}`,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                      idUser: idUser, email: email, firstName: firstName, lastName: lastName}})
       }
     }
 

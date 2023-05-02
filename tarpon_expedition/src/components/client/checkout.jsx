@@ -28,6 +28,13 @@ export function Checkout() {
     const [companions, setCompanions] = useState('');
     const schedulesDocRef = doc(db, 'Schedules', schedule);
 
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const emailUser = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Checkout, userData', idUser,emailUser,firstName,lastName);
+
     const navigate = useNavigate();
 
     const getTotalPrice = () =>{
@@ -46,10 +53,12 @@ export function Checkout() {
     const goBack = () => {
         if(paymentMethod=="card"){
             console.log(CVVC);
-            navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+            navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
         }
         else{
-            navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+            navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
         }
         
     }
@@ -124,7 +133,7 @@ export function Checkout() {
             Package: packagePicked,
             Price: totalPrice,
             Tour: tour,
-            User: 'testing',
+            User: emailUser,
             Companions: companions,
             deleted: false,
             end: dateEnd,
