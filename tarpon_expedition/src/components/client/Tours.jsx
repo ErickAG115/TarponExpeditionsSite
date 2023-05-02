@@ -40,7 +40,7 @@ export function Tours() {
     }, []);
 
     const handleHome = () =>{
-        navigate('/',{});
+        navigate('/',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleAbout = () =>{

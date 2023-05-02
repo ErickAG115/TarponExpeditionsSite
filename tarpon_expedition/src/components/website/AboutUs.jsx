@@ -8,6 +8,8 @@ export function AboutUs() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const pageNumber = 6;
+
 
     // Data from login
     const idUser = location?.state?.idUser;
@@ -18,11 +20,35 @@ export function AboutUs() {
 
 
     const handleHome = () =>{
-        navigate('/',{});
+        navigate('/',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleTour = () =>{
         navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+    }
+
+    const handleContact = () =>{
+        navigate('/Contact',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+    }
+
+    const handleLogin = () =>{
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});    
+        }
+        else{
+            alert("You've already Login");
+        }
+    }
+
+    const handleMyAccount = () =>{
+        // VALIDATE THAT THE USER HAS ALREADY LOGIN
+        // ANY OTHER CASE, SEND HIM TO LOGIN
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});
+        }
+        else{
+            navigate('/ClientMenu',{state:{pageNumber: pageNumber, idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
     }
 
     return (
@@ -35,9 +61,9 @@ export function AboutUs() {
                                 <li><button onClick={handleHome}> Home </button></li>
                                 <li><button onClick={handleTour}> Tours </button></li>
                                 <li><button> About </button></li>
-                                <li><button> Contact </button></li>
-                                <li><button> LOGIN </button></li>
-                                <li><button>MY ACCOUNT</button></li>
+                                <li><button onClick={handleContact}> Contact </button></li>
+                                <li><button onClick={handleLogin}> LOGIN </button></li>
+                                <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                             </ul>
                     </div>
 

@@ -94,6 +94,15 @@ export function Login() {
                                             idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
                                             tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
                     }
+                    //IF THE USER LOGIN FROM ABOUT US
+                    else if(pageNumber == 6){
+                        navigate('/AboutUs',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+                    //IF THE USER LOGIN FROM CONTACT
+                    else if(pageNumber == 7){
+                        navigate('/Contact',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+                    }
+
                 }
             }
         }

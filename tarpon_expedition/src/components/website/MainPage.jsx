@@ -16,34 +16,43 @@ export function MainPage() {
     const email = location?.state?.email;
     const firstName = location?.state?.firstName;
     const lastName = location?.state?.lastName;
-    console.log('Tours userData', idUser,email,firstName,lastName);
+    console.log('HomePage userData', idUser,email,firstName,lastName);
 
     
     const handleTour = () =>{
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleAbout = () =>{
-        navigate('/AboutUs',{});
+        navigate('/AboutUs',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleContact = () =>{
-        navigate('/Contact',{});
+        navigate('/Contact',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleLogin = () =>{
-        //console.log('Numero de pag ',pageNumber)
-        navigate('/Login',{state:{pageNumber: pageNumber}});
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});    
+        }
+        else{
+            alert("You've already Login")
+        }
     }
 
     const handleMyAccount = () =>{
-        // VALIDAR QUE LA SESIÓN ESTÉ INICIADA PARA PODER ENTRAR
-        // CASO CONTRARIO QUE LO MANDE A INICIAR SESIÓN
-        navigate('/ClientMenu',{});
+        // VALIDATE THAT THE USER HAS ALREADY LOGIN
+        // ANY OTHER CASE, SEND HIM TO LOGIN
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});
+        }
+        else{
+            navigate('/ClientMenu',{state:{pageNumber: pageNumber, idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
     }
 
     const handleBookNow = () =>{
-        navigate('/Tours',{});
+        navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     return (

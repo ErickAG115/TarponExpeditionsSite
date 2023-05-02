@@ -39,6 +39,18 @@ export function ClientMenu() {
                 idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
                 tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription}});
         }
+        //IF THE USER COMES FROM ABOUT US
+        else if(pageNumber == 6){
+            navigate('/AboutUs',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
+        //IF THE USER COMES FROM CONTACT
+        else if(pageNumber == 7){
+            navigate('/Contact',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
+        //IF THE USER COMES FROM HOME
+        else if(pageNumber == 1){
+            navigate('/',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
     }
 
     const handleLogout = () =>{

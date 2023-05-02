@@ -27,11 +27,19 @@ export function TourInfo() {
     console.log('TourInfo, userData', idUser,email,firstName,lastName);
 
     const handleHome = () =>{
-        navigate('/',{});
+        navigate('/',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleTour = () =>{
         navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+    }
+
+    const handleAbout = () =>{
+        navigate('/AboutUs',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+    }
+
+    const handleContact = () =>{
+        navigate('/Contact',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleLogin = () =>{
@@ -96,8 +104,8 @@ export function TourInfo() {
                         <ul>
                             <li><button onClick={handleHome}> Home </button></li>
                             <li><button onClick={handleTour}> Tours </button></li>
-                            <li><button> About </button></li>
-                            <li><button> Contact </button></li>
+                            <li><button onClick={handleAbout}> About </button></li>
+                            <li><button onClick={handleContact}> Contact </button></li>
                             <li><button onClick={handleLogin}> LOGIN </button></li>
                             <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                         </ul>

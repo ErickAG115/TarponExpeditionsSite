@@ -7,6 +7,9 @@ export function Contact() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    
+    const pageNumber = 7;
+
 
     // Data from login
     const idUser = location?.state?.idUser;
@@ -17,12 +20,37 @@ export function Contact() {
 
 
     const handleHome = () =>{
-        navigate('/',{});
+        navigate('/',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const handleTour = () =>{
         navigate('/Tours',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
+
+    const handleAbout = () =>{
+        navigate('/AboutUs',{state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+    }
+
+    const handleLogin = () =>{
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});    
+        }
+        else{
+            alert("You've already Login");
+        }
+    }
+
+    const handleMyAccount = () =>{
+        // VALIDATE THAT THE USER HAS ALREADY LOGIN
+        // ANY OTHER CASE, SEND HIM TO LOGIN
+        if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
+            navigate('/Login',{state:{pageNumber: pageNumber}});
+        }
+        else{
+            navigate('/ClientMenu',{state:{pageNumber: pageNumber, idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
+        }
+    }
+
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', height: '110vh', flexDirection: 'column'}}>
@@ -31,10 +59,10 @@ export function Contact() {
                             <ul>
                                 <li><button onClick={handleHome}> Home </button></li>
                                 <li><button onClick={handleTour}> Tours </button></li>
-                                <li><button> About </button></li>
+                                <li><button onClick={handleAbout}> About </button></li>
                                 <li><button> Contact </button></li>
-                                <li><button> LOGIN </button></li>
-                                <li><button>MY ACCOUNT</button></li>
+                                <li><button onClick={handleLogin}> LOGIN </button></li>
+                                <li><button onClick={handleMyAccount}>MY ACCOUNT</button></li>
                             </ul>
                     </div>
             <label style={{fontFamily: 'Lato', fontSize: '40px', fontWeight:'bold', marginBottom:'20px'}}>Contact Information</label>
