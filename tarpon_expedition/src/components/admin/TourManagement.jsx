@@ -3,12 +3,13 @@ import "../website/MainPageStyle.css";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation} from "react-router-dom";
 import { db } from "../../firebase";
-import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
+import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp, where, query} from "firebase/firestore";
 
 export function TourManagement() {
 
     const [tours, setTours] = useState([]);
     const tourCollectionRef = collection(db, "Tours");
+    const schedulesCollectionRef = collection(db, "Schedules");
 
     const getTours = async () => {
         const data = await getDocs(tourCollectionRef);
@@ -24,7 +25,8 @@ export function TourManagement() {
         navigate('/ModifyTour',{state:{Tour: tour}});
     }
 
-    const eliminateTour = async (tour) =>{
+    const eliminateTour = async (tour, tourName) =>{
+        eliminateSchedules(tourName);
         const TourDOC = await doc(db, "Tours", tour);
         const dataTour = {
             Deleted: true
@@ -49,6 +51,22 @@ export function TourManagement() {
     
     const goBack = () =>{
         navigate('/AdminMenu',{});
+    }
+
+    const eliminateSchedules = async (tourName) =>{
+        const data = await getDocs(schedulesCollectionRef);
+        const schedules = data.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }))
+          .filter(
+            (schedule) =>
+              schedule.Tour == tourName
+          );
+        const q = query(schedulesCollectionRef, where('Tour', '==', `${tourName}`));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (doc) => {
+            const data = { Tour: 'eliminatedddd' };
+            await updateDoc(doc.ref, data);
+        });
     }
 
     return (
@@ -78,7 +96,7 @@ export function TourManagement() {
                                     </button></td>
                                     <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goSchedule(tour.Name)}>Add Schedule
                                     </button></td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateTour(tour.id)}>Eliminate
+                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateTour(tour.id, tour.Name)}>Eliminate
                                     </button></td>
                                 </tr>
                                 ))}
