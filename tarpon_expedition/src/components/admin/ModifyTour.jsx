@@ -2,12 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db, uploadFile } from "../../firebase";
-import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "firebase/firestore";
+import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp, where, query} from "firebase/firestore";
 
 export function ModifyTour() {
 
     const toursCollectionRef = collection(db, "Tours");
     const schedulesCollectionRef = collection(db, "Schedules");
+    const [schedules, setSchedules] = useState([]);
     const [originalTourName, setoriginalTourName] = useState('');
     const [tourName, setTourName] = useState('');
     const [type, setType] = useState('');
@@ -38,9 +39,6 @@ export function ModifyTour() {
           );
         setTours(tours);
     };
-    useEffect(() => {
-        getTours();
-      }, []);
 
     const updateInputs = async () =>{
         const TourDOC = await getDoc(doc(db, "Tours", Tour));
@@ -61,9 +59,25 @@ export function ModifyTour() {
             }
         });
     }
+
     useEffect(() => {
         updateInputs();
       }, []);
+
+    const getSchedules = async () => {
+        const data = await getDocs(schedulesCollectionRef);
+        const schedules = data.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }))
+          .filter(
+            (schedule) =>
+              schedule.Tour == originalTourName
+          );
+        console.log(originalTourName);
+        setSchedules(schedules);
+    };
+    useEffect(() => {
+        getSchedules();
+      }, [originalTourName]);
 
     const handleCheckboxChange = (e) => {
         const checkboxValue = e.target.value;
@@ -78,6 +92,7 @@ export function ModifyTour() {
       };
 
     const uploadTour = async () => {
+        console.log(schedules);
         if(tourName=='' || type=='' || price=='' || description=='' || selectedCheckboxes==[] || place==''){
             console.log('a');
         }
@@ -104,8 +119,6 @@ export function ModifyTour() {
                         Techniques: selectedCheckboxes
                     };
                     await updateDoc(tour, dataTour);
-                    alert('The tour was modified succesfully');
-                    goBack();
                 }
                 else{
                     const URL = await uploadFile(file);
@@ -120,9 +133,15 @@ export function ModifyTour() {
                         Techniques: selectedCheckboxes
                     };
                     await updateDoc(tour, dataTour);
-                    alert('The tour was modified succesfully');
-                    goBack();
                 }
+                const q = query(schedulesCollectionRef, where('Tour', '==', `${originalTourName}`));
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach(async (doc) => {
+                    const data = { Tour: tourName };
+                    await updateDoc(doc.ref, data);
+                });
+                alert('The tour was modified succesfully');
+                goBack();
             }
         }
     }

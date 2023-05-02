@@ -83,7 +83,6 @@ export function AddSchedule() {
             }
         }
     };
-    
 
     return (
         <Fragment>
@@ -104,7 +103,7 @@ export function AddSchedule() {
                                 {schedules.map((schedule) => (
                                 <tr key={schedule.id}>
                                     <td>{(schedule.Start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
-                                    <td>{(schedule.Start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
+                                    <td>{(schedule.Finish).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                                 </tr>
                                 ))}
                             </tbody>
