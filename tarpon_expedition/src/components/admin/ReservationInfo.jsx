@@ -56,7 +56,7 @@ export function ReservationInfo() {
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedule}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{totalPrice}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>${totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                         </div>

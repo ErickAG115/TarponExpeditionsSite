@@ -23,6 +23,13 @@ export function ReservationCompanions() {
     const navigate = useNavigate();
     console.log(datePicked);
 
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const email = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Reserv.Companions, userData', idUser,email,firstName,lastName);
+
       useEffect(() => {
         setAdults(adultsLocation);
         setChildren(childrenLocation);
@@ -31,11 +38,13 @@ export function ReservationCompanions() {
       }, []);
 
     const goToPayments = () => {
-        navigate('/ReservationPayment',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price}});
+        navigate('/ReservationPayment',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price,
+                                                idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const goBack = () => {
-        navigate('/ReservationDate',{state: {date: datePicked, package: packagePicked, schedule: schedule, tourName: tour, tourPrice: price}});
+        navigate('/ReservationDate',{state: {date: datePicked, package: packagePicked, schedule: schedule, tourName: tour, tourPrice: price,
+                                    idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
     }
 
     const addAdult  = async () => {

@@ -19,13 +19,21 @@ export function Paypal() {
     const tour = location.state.tour;
     const price = location.state.price;
 
+    // Data from login
+    const idUser = location?.state?.idUser;
+    const emailUser = location?.state?.email;
+    const firstName = location?.state?.firstName;
+    const lastName = location?.state?.lastName;
+    console.log('Paypal, userData', idUser,emailUser,firstName,lastName);
+
     const navigate = useNavigate();
     const emailRegex = new RegExp(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
 
     const goCheckout = () => {
       console.log(password);
       if(email!='' && password != '' && emailRegex.test(email)){
-        navigate('/checkout',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: '', CVV: '', ExpDate: '',date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
+        navigate('/checkout',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: '', CVV: '', ExpDate: '',date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
       }
     }
 
