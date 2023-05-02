@@ -14,6 +14,7 @@ export function ReservationInfo() {
     const [totalPrice, setTotalPrice] = useState('');
     const [tour, setTour] = useState('');
     const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
     const [companions, setCompanions] = useState('');
     const reservationID = location.state.Reservation;
     const reservation = doc(db, 'Reservations', reservationID);
@@ -38,6 +39,7 @@ export function ReservationInfo() {
         setTour(gotReservation.get('Tour'));
         setPackagePicked(gotReservation.get('Package'));
         setUser(gotReservation.get('User'));
+        setEmail(gotReservation.get('Email'));
     }
 
     useEffect(() => {
@@ -51,6 +53,7 @@ export function ReservationInfo() {
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
                         <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Reservation Info</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{user}</label>
+                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{email}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{tour}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{datePicked}</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedule}</label>

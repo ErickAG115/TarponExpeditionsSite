@@ -59,7 +59,6 @@ export function Checkout() {
             navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
                                         idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
         }
-        
     }
 
     const scheduleString = async () =>{
@@ -124,11 +123,13 @@ export function Checkout() {
         const TStampEnd = (new Date(dateFinStr)).getTime();
         const dateStart = Timestamp.fromMillis(TStampStart);
         const dateEnd = Timestamp.fromMillis(TStampEnd);
+        const fullName = `${firstName} ${lastName}`
         const data ={
             Package: packagePicked,
             Price: totalPrice,
             Tour: tour,
-            User: emailUser,
+            User: fullName,
+            Email: emailUser,
             Companions: companions,
             deleted: false,
             end: dateEnd,
