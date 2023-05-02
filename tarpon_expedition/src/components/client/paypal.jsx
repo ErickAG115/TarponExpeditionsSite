@@ -17,6 +17,7 @@ export function Paypal() {
     const seniors = location.state.seniors;
     const children = location.state.children;
     const tour = location.state.tour;
+    const price = location.state.price;
 
     const navigate = useNavigate();
     const emailRegex = new RegExp(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
@@ -36,6 +37,10 @@ export function Paypal() {
       setPassword(e);
     }
 
+    const goBack = () =>{
+      navigate('/ReservationPayment', {state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price}})
+    }
+
     return (
         <Fragment>
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
@@ -47,7 +52,7 @@ export function Paypal() {
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Password</label>
                         <input type="password" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', textAlign: 'center', position: 'relative', top: '-20px', padding: '6px 12px'}} onChange={(event) =>{handlePassword(event.target.value);}}/>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} >Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()} >Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goCheckout()}>Next</button>
                         </div>
                     </div>

@@ -45,7 +45,6 @@ export function Checkout() {
 
     const goBack = () => {
         if(paymentMethod=="card"){
-            console.log(CVVC);
             navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children}})
         }
         else{
@@ -112,14 +111,10 @@ export function Checkout() {
         //const isoDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
         const dateStartStr = `${datePicked}T${Start}.000`;
         const dateFinStr = `${datePicked}T${Fin}.000`;
-        console.log(dateStartStr);
         const TStampStart = new Date(dateStartStr);
         const TStampEnd = (new Date(dateFinStr)).getTime();
         const dateStart = Timestamp.fromMillis(TStampStart);
         const dateEnd = Timestamp.fromMillis(TStampEnd);
-        console.log('ESTOOOO', TStampStart);
-        console.log(dateStart);
-        console.log(dateEnd);
         const data ={
             Package: packagePicked,
             Price: totalPrice,
