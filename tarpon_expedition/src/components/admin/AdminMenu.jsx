@@ -13,6 +13,10 @@ export function AdminMenu() {
     const goReservations = () =>{
         navigate('/ReservationManagement',{});
     }
+    
+    const handleLogout = () =>{
+         navigate('/',{});
+    }
 
     return (
         <Fragment>
@@ -23,6 +27,7 @@ export function AdminMenu() {
                         <button style={{width:'35%', height:'15%', fontSize: '30px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '20px', marginBottom:'40px'}}onClick={() => goTours()}>Manage Tours</button>
                         <button style={{width:'35%', height:'15%', fontSize: '30px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '20px', marginBottom:'40px'}}onClick={() => goReservations()}>Manage Reservations</button>
                         <button style={{width:'35%', height:'15%', fontSize: '30px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '20px', marginBottom:'20px'}}>Register Employee</button>
+                        <button style={{width:'35%', height:'15%', fontSize: '30px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '20px', marginBottom:'20px'}}onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
             </div>
