@@ -98,7 +98,7 @@ export function ModifyTour() {
                         Name: tourName,
                         Type: type,
                         Price: price,
-                        Description: description,
+                        Desc: description,
                         Deleted: false,
                         Place: place,
                         Techniques: selectedCheckboxes
@@ -113,7 +113,7 @@ export function ModifyTour() {
                         Name: tourName,
                         Type: type,
                         Price: price,
-                        Description: description,
+                        Desc: description,
                         Deleted: false,
                         Place: place,
                         Image: URL,

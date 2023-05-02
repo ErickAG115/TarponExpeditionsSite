@@ -6,6 +6,7 @@ import { addDoc, collection, updateDoc, getDocs, getDoc, doc, Timestamp} from "f
 import moment from 'moment';
 
 export function ReservationDate() {
+
     const [datePicked, setDatePicked] = useState("");
     const [packagePicked, setPackagePicked] = useState("");
     const [schedulePicked, setSchedulePicked] = useState("");
@@ -38,14 +39,7 @@ export function ReservationDate() {
     useEffect(() => {
         setPackagePicked(packageChosen);
         setSchedules(schedule);
-        if(dateChosen!=''){
-            console.log('adentro');
-            handleDate(dateChosen);
-        }
-        else{
-            handleDate('01/01/2023');
-        }
-      }, [dateChosen]);
+      }, []);
 
     //const tour = location.state.tour;
     //const tour = 'tour name';
@@ -150,7 +144,7 @@ export function ReservationDate() {
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
                         <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Choose a package and Schedule</label>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Pick a date to display available schedules</label>
-                        <input value={datePicked} type="date" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', position: 'relative', top: '-20px'}} onChange={(event) =>{handleDate(event.target.value);}}/>
+                        <input type="date" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', position: 'relative', top: '-20px'}} onChange={(event) =>{handleDate(event.target.value);}}/>
                         <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '10px'}}>Schedules</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}>
                             {schedulesFiltered.map((filteredSchedules) => (

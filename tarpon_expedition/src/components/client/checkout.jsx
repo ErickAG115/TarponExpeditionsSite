@@ -109,15 +109,17 @@ export function Checkout() {
         localDate.setMinutes(localDate.getMinutes() + timezoneOffset);
         const formattedDate = localDate.toLocaleDateString(undefined, { timeZone: 'UTC' });
         const [month, day, year] = formattedDate.split('/');
-        const isoDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-        const dateStartStr = `${isoDateString}T${Start}.000`;
-        const dateFinStr = `${isoDateString}T${Fin}.000`;
-        console.log(dateFinStr);
+        //const isoDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        const dateStartStr = `${datePicked}T${Start}.000`;
+        const dateFinStr = `${datePicked}T${Fin}.000`;
+        console.log(dateStartStr);
         const TStampStart = new Date(dateStartStr);
-        const TStampEnd = new Date(dateFinStr);
+        const TStampEnd = (new Date(dateFinStr)).getTime();
         const dateStart = Timestamp.fromMillis(TStampStart);
         const dateEnd = Timestamp.fromMillis(TStampEnd);
+        console.log('ESTOOOO', TStampStart);
         console.log(dateStart);
+        console.log(dateEnd);
         const data ={
             Package: packagePicked,
             Price: totalPrice,

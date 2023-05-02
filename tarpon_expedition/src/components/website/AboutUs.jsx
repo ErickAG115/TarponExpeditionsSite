@@ -14,7 +14,7 @@ export function AboutUs() {
     const email = location?.state?.email;
     const firstName = location?.state?.firstName;
     const lastName = location?.state?.lastName;
-    console.log('Tours userData', idUser,email,firstName,lastName);
+    console.log('About Us userData', idUser,email,firstName,lastName);
 
 
     const handleHome = () =>{

@@ -35,7 +35,7 @@ export function ReservationCompanions() {
     }
 
     const goBack = () => {
-        navigate('/ReservationDate',{state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, price: price}});
+        navigate('/ReservationDate',{state: {date: datePicked, package: packagePicked, schedule: schedule, tourName: tour, tourPrice: price}});
     }
 
     const addAdult  = async () => {
