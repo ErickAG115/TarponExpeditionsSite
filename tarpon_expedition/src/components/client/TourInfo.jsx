@@ -73,13 +73,13 @@ export function TourInfo() {
         const pageNumber = 3;
         
         if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
-            alert('NO esta loggeado');
+            alert('Need to login first');
             navigate('/Login',{state:{pageNumber: pageNumber, date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
                                         idTour: idTour, tourName: tourName,tourPrice: tourPrice}});
 
         }
         else{
-            alert('SÍ está loggeado');
+            //alert('SÍ está loggeado');
             navigate('/ReservationDate',{state: {date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
                                         idTour: idTour, tourName: tourName,tourPrice: tourPrice,
                                         idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
