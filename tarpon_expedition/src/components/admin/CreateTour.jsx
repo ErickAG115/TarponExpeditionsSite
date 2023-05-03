@@ -107,34 +107,34 @@ export function CreateTour() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '85%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Registration</label>
+                        <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Registration</h1>
                         <div style={{width: '100%', height:'100%'}}>
                         <div style={{float: 'left', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                                 
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-59px'}}>Tour Name</label>
+                                <label for='Name' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-59px'}}>Tour Name</label>
                                 <input type="text" id="Name" style={{ borderRadius: '5px', marginRight:'10px'}} 
                                     onChange={(event) =>{
                                         setNameTour(event.target.value);}}
                                 />
 
-                                <label style={{fontFamily: 'lato', fontSize: '20px',position: 'relative', left: '-62px'}}>Tour Type</label>
+                                <label for='TourType' style={{fontFamily: 'lato', fontSize: '20px',position: 'relative', left: '-62px'}}>Tour Type</label>
                                 <select type="text" id="TourType" value={newTourType} onChange={handleTourTypeSelect} style={{ borderRadius: '5px', marginRight:'10px', marginLeft:'-135px'}}>
                                     <option value="" disabled selected>Select</option>
                                     <option value="Sea">Sea</option>
                                     <option value="River">River</option>
                                 </select>
                             
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-79px'}}>Place</label>
+                                <label for='Place' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-79px'}}>Place</label>
                                 <input type="text" id="Place" style={{ borderRadius: '5px', marginRight:'10px'}}
                                     onChange={(event) =>{
                                         setPlace(event.target.value);}}
                                 />
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-82px'}}>Price</label>
+                                <label for='Price' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-82px'}}>Price</label>
                                 <input type="number" id="Price" style={{ borderRadius: '5px', marginRight:'10px'}} 
                                     onChange={(event) =>{
                                         setPrice(event.target.value);}}
                                 />
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-57px'}}>Description</label>
+                                <label for='Description' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-57px'}}>Description</label>
                                 <textarea id="Description" style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} 
                                     onChange={(event) =>{
                                         setDescription(event.target.value);}}
@@ -142,23 +142,23 @@ export function CreateTour() {
                         </div>
                         <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-103px'}}>
                                 
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px', marginTop:'80px'}}>Starting Time</label>
-                                <input type="time" id="StartTime" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-50px'}} 
+                                <label for='StartTime' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-37px', marginTop:'80px'}}>Starting Time</label>
+                                <input type="time" id="StartTime" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} 
                                     onChange={(event) =>{
                                         setStartingTime(event.target.value);}}
                                 />
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
-                                <input type="time" id="FinishTime" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-50px'}} 
+                                <label for='FinishTime' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-30px'}}>Finishing Time</label>
+                                <input type="time" id="FinishTime" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '-35px'}} 
                                     onChange={(event) =>{
                                         setFinishingTime(event.target.value);}}
                                 />
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px',marginTop:'20px'}}>Picture</label>
-                                <input type="file" id="Picture" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '58px'}} 
+                                <label for='Picture' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px',marginTop:'20px'}}>Picture</label>
+                                <input type="file" id="Picture" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '48px'}} 
                                     onChange={(event) => setFile(event.target.files[0])}
                                 />
 
                                 <div>  
-                                <label style={{fontFamily: 'lato', fontSize: '20px', marginTop:'20px', marginRight:'30px'}}>Fishing Techniques</label>
+                                <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', marginTop:'20px', marginRight:'30px'}}>Fishing Techniques</label>
                                 <div style={{display: 'flex', flexDirection: 'column'}}>
                                     <label htmlFor="Fly Fishing">
                                     <input type="checkbox" id="Fly Fishing" name="Fly Fishing" value="FlyFishing"

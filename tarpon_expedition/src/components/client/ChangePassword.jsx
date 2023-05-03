@@ -121,29 +121,29 @@ export function ChangePassword() {
                     <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{background:'transparent',height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
                             
-                            <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'40px',color: '#fff'}}>Change Password</label>
+                            <h1 tabIndex='0'style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'40px',color: '#fff'}}>Change Password</h1>
 
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-80px',color: '#fff'}}>Current Password</label>
+                            <label for='old password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-66px',color: '#fff'}}>Current Password</label>
                             <input type="password" id="old password" style={{ borderRadius: '5px', width:'45%', marginBottom:'20px'}} 
                                 onChange={(event) =>{
                                     setCurrentPsswrd(event.target.value);
                             }}/>
 
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-100px',color: '#fff'}}>New Password</label>
+                            <label for='new Password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-76px',color: '#fff'}}>New Password</label>
                             <input type="password" id="new Password" style={{ borderRadius: '5px', width:'45%'}} 
                                 onChange={(event) =>{
                                     setNewPsswrd(event.target.value);
                             }}/>
 
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-100px',color: '#fff'}}>Confirm Password</label>
+                            <label for='confirm Password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px',color: '#fff'}}>Confirm Password</label>
                             <input type="password" id="confirm Password" style={{ borderRadius: '5px', width:'45%'}} 
                                 onChange={(event) =>{
                                     setConfirmPsswrd(event.target.value);
                             }}/>
 
                             <div style={{height:'20%', width:'70%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                                <button onClick={changePassword} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Confirm</button>
-                                <button onClick={handleBack} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
+                                <button onClick={handleBack} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
+                                <button onClick={changePassword} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Confirm</button>
                             </div>
                         </div>
                     </div>

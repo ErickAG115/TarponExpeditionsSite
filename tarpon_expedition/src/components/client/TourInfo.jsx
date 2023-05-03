@@ -73,13 +73,12 @@ export function TourInfo() {
         const pageNumber = 3;
         
         if(idUser == undefined && email == undefined && firstName == undefined && lastName == undefined){
-            alert('NO esta loggeado');
+            alert('you are not logged in, you are now being redirected to the log in window');
             navigate('/Login',{state:{pageNumber: pageNumber, date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
                                         idTour: idTour, tourName: tourName,tourPrice: tourPrice}});
 
         }
         else{
-            alert('SÍ está loggeado');
             navigate('/ReservationDate',{state: {date: '01/01/2023', package: '', schedule: '', tour: 'tour', price: '100',
                                         idTour: idTour, tourName: tourName,tourPrice: tourPrice,
                                         idUser: idUser, email: email, firstName: firstName, lastName: lastName}});
@@ -116,16 +115,16 @@ export function TourInfo() {
                         <div style={{ background: "white", height: "100%", width: "90%", display: "flex", flexDirection: "column", overflow: "auto", alignItems: "center", justifyContent: "center", borderRadius: "10px", border: "2px solid rgba(255,255,255,.5)", boxShadow: "0 0 30px rgba(0,0,0,.5)" }}>
                             
                             
-                            <h1 style={{ textAlign: "center"}}>{tourName}</h1>
+                            <h1 tabIndex='0' style={{ textAlign: "center"}}>{tourName}</h1>
                             <img src={imgTour} style={{ maxWidth: "250px", height: "auto", marginBottom: "10px" }} />
-                            <p style={{ textAlign: "center", marginBottom: "10px", marginLeft:'50px', marginRight:'50px' }}>{tourDescription}</p>
+                            <p tabIndex='0' style={{ textAlign: "center", marginBottom: "10px", marginLeft:'50px', marginRight:'50px' }}>{tourDescription}</p>
                             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "80%", margin: "10px 0" }}>
-                                <label style={{fontWeight:'bold'}}>Place: {tourPlace}</label>
-                                <label style={{fontWeight:'bold'}}>Tour Type: {tourType}</label>
-                                <label style={{fontWeight:'bold'}}>Techniques: {tourTech && tourTech.join(', ')}</label>
+                                <label tabIndex='0' style={{fontWeight:'bold'}}>Place: {tourPlace}</label>
+                                <label tabIndex='0' style={{fontWeight:'bold'}}>Tour Type: {tourType}</label>
+                                <label tabIndex='0' style={{fontWeight:'bold'}}>Techniques: {tourTech && tourTech.join(', ')}</label>
                                 
                             </div>
-                            <label style={{fontWeight:'bold', fontSize:'18px', marginTop:'2px', marginBottom:'20px'}}>Price: ${tourPrice}</label>
+                            <label tabIndex='0' style={{fontWeight:'bold', fontSize:'18px', marginTop:'2px', marginBottom:'20px'}}>Price: ${tourPrice}</label>
                             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                                 <button class='btnTInfo2' onClick={handleBack} >Back</button>
                                 <button class='btnTInfo btnT1' onClick={() => startBook()} >Book Now</button>

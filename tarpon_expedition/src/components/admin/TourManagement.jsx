@@ -75,7 +75,7 @@ export function TourManagement() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex',alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
                     <div style={{float: 'right', width: '90%', height:'90%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
-                            <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px'}}>Tour Management</label>
+                            <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px'}}>Tour Management</h1>
                             <table className="table" style={{fontFamily: 'Lato', border: '1px solid black', fontSize: '20px'}}>
                                 <thead>
                                     <tr>
@@ -93,19 +93,19 @@ export function TourManagement() {
                                     <td>{tour.Name}</td>
                                     <td>{tour.Price}</td>
                                     <td>{(tour.Techniques).join(', ')}</td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goModify(tour.id)}>Modify
+                                    <td><button aria-label={`Modify the tour ${tour.Name}`} style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goModify(tour.id)}>Modify
                                     </button></td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goSchedule(tour.Name)}>Add Schedule
+                                    <td><button aria-label={`Add a schedule to the tour ${tour.Name}`}style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goSchedule(tour.Name)}>Add Schedule
                                     </button></td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateTour(tour.id, tour.Name)}>Eliminate
+                                    <td><button aria-label={`Eliminate the tour ${tour.Name}`} style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateTour(tour.id, tour.Name)}>Eliminate
                                     </button></td>
                                 </tr>
                                 ))}
                                 </tbody>
                             </table>
                             <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                            <button style={{fontSize: '25px', color:'white',width:'20%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={()=>goCreate()}>Create Tour</button>
-                            <button style={{fontSize: '25px', color:'white',width:'20%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={()=>goBack()}>Back</button>
+                            <button style={{fontSize: '25px', color:'white',width:'20%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={()=>goBack()}>Back</button>
+                            <button style={{fontSize: '25px', color:'white',width:'20%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={()=>goCreate()}>Create Tour</button>
                             </div>
                         </div>
                     </div>

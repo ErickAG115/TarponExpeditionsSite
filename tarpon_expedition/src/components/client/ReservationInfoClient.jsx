@@ -112,13 +112,13 @@ export function ReservationInfoClient() {
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh', width: '60%', margin:'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                    <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Reservation Info</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{tour}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{datePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedule}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>${totalPrice}</label>
+                    <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Reservation Info</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Tour: {tour}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Date: {datePicked}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Schedule: {schedule}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Package: {packagePicked}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Total price: ${totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                         </div>

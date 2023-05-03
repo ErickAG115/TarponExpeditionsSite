@@ -164,20 +164,19 @@ export function Login() {
                     <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{background:'transparent',height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
                             
-                            <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'40px',color: '#fff'}}>Log In</label>
+                            <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'40px',color: '#fff'}}>Log In</h1>
 
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-80px',color: '#fff'}}>Email Address</label>
+                            <label for='Email'style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-80px',color: '#fff'}}>Email Address</label>
                             <input type="text" id="Email" style={{ borderRadius: '5px', width:'45%', marginBottom:'20px'}} 
                                 onChange={(event) =>{
                                     setEmail(event.target.value);
                             }}/>
 
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-100px',color: '#fff'}}>Password</label>
+                            <label for='Password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-100px',color: '#fff'}}>Password</label>
                             <input type="password" id="Password" style={{ borderRadius: '5px', width:'45%'}} 
                                 onChange={(event) =>{
                                     setPsswrd(event.target.value);
                             }}/>
-                            <button style={{color: '#24AFC1', fontFamily: 'lato', fontSize: '15px', position: 'relative', left: '-85px', marginBottom:'20px', border: 'none', background: 'transparent'}}>Forgot Password?</button>
 
                             <div style={{height:'20%', width:'70%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                                 <button onClick={loginUser} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Log In</button>

@@ -129,10 +129,10 @@ export function Register() {
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',}}>
                     <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{backgroundColor: 'transparent', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
-                            <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginBottom:'20px', marginTop:'20px',color:'#fff'}}>Sign Up</label>
+                            <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginBottom:'20px', marginTop:'20px',color:'#fff'}}>Sign Up</h1>
                             <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-117px',color:'#fff'}}>First Name</label>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '10px',color:'#fff'}}>Last Name</label>
+                                <label for='First Name' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-117px',color:'#fff'}}>First Name</label>
+                                <label for='Last Name' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '10px',color:'#fff'}}>Last Name</label>
                             </div>
                             <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto',marginBottom:'20px'}}>
                                 <input type="text" id="First Name" style={{ borderRadius: '5px', marginRight:'10px'}} 
@@ -144,19 +144,19 @@ export function Register() {
                                         setLastName(event.target.value);
                                 }}/>
                             </div>
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-147px',color:'#fff'}}>Email Address</label>
+                            <label for='Email' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-147px',color:'#fff'}}>Email Address</label>
                             <input type="text" id="Email" style={{height:'5%', borderRadius: '5px', width:'67.5%', marginBottom:'20px', position: 'relative'}}
                                 onChange={(event) =>{
                                     setEmail(event.target.value);
                             }}/>
-                            <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-153px',color:'#fff'}}>Date of Birth</label>
+                            <label for='Date of Birth' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-153px',color:'#fff'}}>Date of Birth</label>
                             <input type="date" id="Date of Birth" style={{height:'5%', borderRadius: '5px', width:'67.5%', marginBottom:'20px', position: 'relative'}} 
                                 onChange={(event) =>{
                                     setDateBirth(event.target.value);
                             }}/>
                             <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-93px',color:'#fff'}}>Password</label>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative',left: '49px',color:'#fff'}}>Confirm Password</label>
+                                <label for='Password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-93px',color:'#fff'}}>Password</label>
+                                <label for='Confirm Password' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative',left: '49px',color:'#fff'}}>Confirm Password</label>
                             </div>
                             <div style={{height:'7%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                                 <input type="password" id="Password" style={{ borderRadius: '5px', marginRight:'11.5px'}} 
@@ -170,8 +170,8 @@ export function Register() {
                             </div>
 
                             <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                            <button onClick={SignUp} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Sign Up</button>
-                            <button onClick={handleBack} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Back</button>
+                            <button onClick={handleBack} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}}>Back</button>
+                            <button onClick={SignUp} style={{width:'30%', fontSize: '20px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}}>Sign Up</button>
                             </div>
                         </div>
                     </div>

@@ -169,17 +169,17 @@ export function Checkout() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '60%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Summary and Checkout</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{tour}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{datePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{schedulePicked}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{packagePicked} package</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{methodMessage}</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Final price: ${totalPrice}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Summary and Checkout</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Tour chosen: {tour}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Date chosen: {datePicked}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Schedule chosen: {schedulePicked}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Companions: {companions}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Package chosen: {packagePicked} package</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{methodMessage}</label>
+                        <label tabindex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Final price: ${totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => checkOut()}>Next</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => checkOut()}>Checkout</button>
                         </div>
                     </div>
                 </div>
