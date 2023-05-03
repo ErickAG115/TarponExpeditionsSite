@@ -33,7 +33,7 @@ export function Paypal() {
       console.log(password);
       if(email!='' && password != '' && emailRegex.test(email)){
         navigate('/checkout',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: '', CVV: '', ExpDate: '',date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
-                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName, price: price}})
       }
       else{
         alert('Error: make sure you entered a valid email address and password');

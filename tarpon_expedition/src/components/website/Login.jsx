@@ -106,13 +106,10 @@ export function Login() {
                 }
                 
             }
-            else{
-                alert("The email or password you provided are incorrect");
-            }
         }
         if(flag === false){
             console.log("Inicio de sesión fallida. Intente de nuevo");
-            alert("The email or password you provided is incorrect");
+            alert("The email or password you provided are incorrect");
         }
 
     };

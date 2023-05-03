@@ -82,7 +82,7 @@ export function ChangePassword() {
                 alert("The first password you entered doesn't match your current password");
             }
             else{
-                if(newPsswrd != currentPsswrd){
+                if(newPsswrd == currentPsswrd){
                     alert("You can't use the same password");
                 }
                 else{

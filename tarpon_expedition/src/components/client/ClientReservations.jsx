@@ -104,7 +104,7 @@ export function ClientReservations() {
                                     <td>{(reservation.start).toDate().toLocaleDateString()}</td>
                                     <td>{(reservation.start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                                     <td>{(reservation.end).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
-                                    <td>{reservation.Price}</td>
+                                    <td>${reservation.Price}</td>
                                     <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goDetails(reservation.id)}>Details
                                     </button></td>
                                     <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateReservation(reservation.id)}>Cancel

@@ -92,7 +92,10 @@ export function ReservationDate() {
       const getReservations = async () => {
         const data = await getDocs(reservationsCollectionRef);
         const reservation = data.docs
-          .map((doc) => ({ ...doc.data(), id: doc.id }));
+          .map((doc) => ({ ...doc.data(), id: doc.id })).filter(
+            (reservation) =>
+              !reservation.deleted
+          );
         setReservations(reservation);
     };
     useEffect(() => {
