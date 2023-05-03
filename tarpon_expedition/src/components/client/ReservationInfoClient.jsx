@@ -116,7 +116,7 @@ export function ReservationInfoClient() {
                         <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Tour: {tour}</label>
                         <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Date: {datePicked}</label>
                         <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Schedule: {schedule}</label>
-                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>{companions}</label>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Companions: {companions}</label>
                         <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Package: {packagePicked}</label>
                         <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', top: '-20px'}}>Total price: ${totalPrice}</label>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
