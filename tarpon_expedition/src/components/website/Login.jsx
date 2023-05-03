@@ -54,7 +54,7 @@ export function Login() {
                 else if(users[i].Type == 'employee'){
                     console.log("Inicio de sesión Empleado exitoso");
                     // FALTA VER CUAL ES LA RUTA PARA EL EMPLEADO
-                    navigate('/EmployeeMenu',{});
+                    navigate('/',{});
                 }
                 else{
                     const idUser = users[i].id;
@@ -104,9 +104,6 @@ export function Login() {
                     }
 
                 }
-            }
-            else{
-                alert("The email or password you provided are incorrect");
             }
         }
         if(flag === false){
