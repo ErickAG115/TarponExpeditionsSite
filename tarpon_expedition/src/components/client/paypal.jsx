@@ -49,7 +49,8 @@ export function Paypal() {
     }
 
     const goBack = () =>{
-      navigate('/ReservationPayment', {state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price}})
+      navigate('/ReservationPayment', {state: {date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children, price: price,
+                                              idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
     }
 
     return (

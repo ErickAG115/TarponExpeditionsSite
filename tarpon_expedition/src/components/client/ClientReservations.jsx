@@ -9,6 +9,8 @@ export function ClientReservations() {
 
     const [reservations, setReservations] = useState([]);
     const reservationsCollectionRef = collection(db, "Reservations");
+
+    const location = useLocation();
    
     //Data received from other page
     const pageNumber = location?.state?.pageNumber;
