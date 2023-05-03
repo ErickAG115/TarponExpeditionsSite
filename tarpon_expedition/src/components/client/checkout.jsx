@@ -23,6 +23,7 @@ export function Checkout() {
     const CVVC = location.state.CVV;
     const ExpDate = location.state.ExpDate
     const tour = location.state.tour;
+    const price = location.state.price;
     const [totalPrice, setTotalPrice] = useState('');
     const [schedulePicked, setSchedulePicked] = useState('');
     const [companions, setCompanions] = useState('');
@@ -52,12 +53,24 @@ export function Checkout() {
 
     const goBack = () => {
         if(paymentMethod=="card"){
-            navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
-                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
+            if(packagePicked=='Premium'){
+                navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice-20, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName, price: price}})
+            }
+            else{
+                navigate('/card',{state: { PPassword: password, PMethod: 'card', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName, price: price}})
+            }
         }
         else{
-            navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
-                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}})
+            if(packagePicked=='Premium'){
+                navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice-20, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName, price: price}})
+            }
+            else{
+                navigate('/paypal',{state: { PPassword: password, PMethod: 'paypal', PEmail: email, CreditCardNumber: cardNumber, CVV: CVVC, ExpDate: ExpDate,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
+                                        idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName, price: price}})
+            }
         }
     }
 
