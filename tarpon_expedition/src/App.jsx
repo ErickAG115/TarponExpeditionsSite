@@ -19,6 +19,7 @@ import { Checkout } from "./components/client/checkout";
 import { Paypal } from "./components/client/paypal";
 import { CreateTour } from "./components/admin/CreateTour";
 import { ModifyTour } from "./components/admin/ModifyTour";
+import { EmployeeMenu } from "./components/admin/EmployeeMenu";
 import { ClientReservations } from "./components/client/ClientReservations";
 import { ChangePassword } from "./components/client/ChangePassword";
 import { ReservationInfoClient } from "./components/client/ReservationInfoClient";
@@ -26,6 +27,7 @@ import { TourManagement } from "./components/admin/TourManagement";
 import { AddSchedule } from "./components/admin/AddSchedule";
 import { ReservationManagement } from "./components/admin/ReservationManagement";
 import { ReservationInfo } from "./components/admin/ReservationInfo";
+import { ReservationInfoEmployee } from "./components/admin/ReservationInfoEmployee";
 
 
 
@@ -58,7 +60,9 @@ export function App() {
           <Route exact path="/ChangePassword" element={<ChangePassword />} />
           <Route exact path="/ReservationManagement" element={<ReservationManagement />} />
           <Route exact path="/ReservationInfo" element={<ReservationInfo />} />
+          <Route exact path="/ReservationInfoEmployee" element={<ReservationInfoEmployee />} />
           <Route exact path="/ReservationInfoClient" element={<ReservationInfoClient />} />
+          <Route exact path="/EmployeeMenu" element={<EmployeeMenu />} />
         </Routes>
       </div>
     </Router>

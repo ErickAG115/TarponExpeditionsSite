@@ -94,7 +94,7 @@ export function ModifyTour() {
     const uploadTour = async () => {
         console.log(schedules);
         if(tourName=='' || type=='' || price=='' || description=='' || selectedCheckboxes==[] || place==''){
-            console.log('a');
+            alert("You must fill all the information, don't erase any of the given data");
         }
         else{
             let found = false;
@@ -104,7 +104,7 @@ export function ModifyTour() {
                 }
             }
             if(found==true){
-
+                alert('A tour with that name already exists');
             }
 
             else{

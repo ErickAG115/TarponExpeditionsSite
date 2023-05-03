@@ -33,6 +33,7 @@ export function TourManagement() {
         }
         await updateDoc(TourDOC, dataTour);
         getTours();
+        alert("Tour was eliminated successfully");
     }
 
   useEffect(() => {

@@ -28,7 +28,7 @@ export function ReservationManagement() {
         console.log(reservation);
         await updateDoc(ReservationDOC, data);
         getReservations();
-        alert('Reservation was eliminated successfully');
+        alert('The reservation was eliminated successfully');
     }
 
   useEffect(() => {

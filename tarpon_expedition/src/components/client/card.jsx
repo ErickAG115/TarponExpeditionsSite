@@ -40,6 +40,9 @@ export function Card() {
         navigate('/checkout',{state: { PPassword: '', PMethod: 'card', PEmail: '', CreditCardNumber: creditCardNumber, CVV: CVV, ExpDate: `${month}/${year}`,date: datePicked, package: packagePicked, schedule: schedule, tour: tour, totalPrice: totalPrice, adults: adults, seniors: seniors, children: children,
                                       idUser: idUser, email: email, firstName: firstName, lastName: lastName}})
       }
+      else{
+        alert("Error: you must fill all the information requested");
+      }
     }
 
     useEffect(() => {

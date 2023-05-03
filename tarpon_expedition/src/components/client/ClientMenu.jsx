@@ -53,6 +53,18 @@ export function ClientMenu() {
         }
     }
 
+    const goReservations = () =>{
+        navigate('/ClientReservations', {state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}})
+    }
+
+    const goPassword = () =>{
+        navigate('/ChangePassword', {state:{idUser: idUser, email: email, firstName: firstName, lastName: lastName,
+            idTour: idTour, tourName: tourName, imgTour: imgTour, tourPlace: tourPlace,
+            tourType: tourType, tourTech: tourTech, tourPrice: tourPrice, tourDescription: tourDescription, pageNumber: pageNumber}})
+    }
+
     const handleLogout = () =>{
         navigate('/',{});
     }
@@ -67,8 +79,8 @@ export function ClientMenu() {
                         <div style={{background: 'transparent', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
                             <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px', color:'#fff'}}>User Information</label>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}} onClick={handleLogout}>Logout</button>
-                            <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}}>Check Reservations</button>
-                            <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'20px'}}>Change Password</button>
+                            <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}} onClick={goReservations}>Check Reservations</button>
+                            <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'20px'}} onClick={goPassword}>Change Password</button>
                         </div>
                     </div>
                 </div>

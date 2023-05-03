@@ -51,17 +51,17 @@ export function CreateTour() {
             console.log('descrip', newDescription);
 
             if(repeatedTour){
-                alert('Ya existe un TOUR con este nombre');
+                alert('A tour with that name already exists');
             }
             else if(newNameTour == "" || newPlace == "" || newPrice=="" || newDescription=="" || URL=="" || startingTime=="" || finishingTime==""){
                 console.log('HOLA')
-                alert('No puede ingresar datos vacios');
+                alert("You must fill all the information, don't leave any empty spaces");
             }
             else if(!newTourType){
-                alert('No puede ingresar datos vacios');
+                alert("You must pick a tour type");
             }
             else if(techniques.length == 0){
-                alert('No puede ingresar datos vacios');
+                alert("You must choose at least 1 technique");
             }
             else if(startingTime>=finishingTime){
                 alert("The starting time has to be earlier than the finishing time");
