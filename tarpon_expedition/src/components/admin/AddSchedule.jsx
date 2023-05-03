@@ -90,8 +90,8 @@ export function AddSchedule() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '70%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'90%', width:'60%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', position: 'relative', top: '10px'}}>Add Schedule</label>
-                        <label style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', position: 'relative', top: '40px'}}>Registered Schedules</label>
+                        <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', position: 'relative', top: '10px'}}>Add Schedule</h1>
+                        <h2 style={{fontFamily: 'lato', fontSize: '25px', fontWeight:'bold', position: 'relative', top: '40px'}}>Registered Schedules</h2>
                         <div style={{float: 'right', width: '70%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative'}}>
                         <table className="table" style={{ fontFamily: 'Lato', border: '2px solid black', fontSize: '20px', borderRadius: '10px'}}>
                             <thead>
@@ -110,12 +110,12 @@ export function AddSchedule() {
                             </tbody>
                         </table>
                             <div style={{display: 'flex', flexDirection: 'horizontal'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '2px'}}>Starting Time</label>
-                                <label style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '8px'}}>Finishing Time</label>
+                                <label for='Start' style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '2px'}}>Starting Time</label>
+                                <label for='Finish' style={{fontFamily: 'lato', fontSize: '22px', position: 'relative', left: '8px'}}>Finishing Time</label>
                             </div>
                             <div style={{display: 'flex', flexDirection: 'horizontal'}}>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setStart(event.target.value)}/>
-                                <input type="time" id="First Name" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setEnd(event.target.value)}/>
+                                <input type="time" id="Start" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setStart(event.target.value)}/>
+                                <input type="time" id="Finish" style={{ borderRadius: '5px', fontSize: '20px', position: 'relative'}} onChange={(event)=>setEnd(event.target.value)}/>
                             </div>
                         </div>
                            <button style={{width:'30%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginBottom: '20px'}} onClick={() => uploadSchedule()}>Add</button>

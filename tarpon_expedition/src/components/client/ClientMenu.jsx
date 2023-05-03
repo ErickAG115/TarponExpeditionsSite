@@ -72,12 +72,12 @@ export function ClientMenu() {
         <Fragment>
             <div class='banner'>
                 <button style={{background:'transparent',border:'none'}}>
-                    <img onClick={handleBack} src={require('../website/icons8-go-back-64.png')} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
+                    <img onClick={handleBack} src={require('../website/icons8-go-back-64.png')} alt={'Back button'} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
                 </button>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh',}}>
                     <div style={{float: 'right', width: '65%', height:'90%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{background: 'transparent', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
-                            <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px', color:'#fff'}}>User Information</label>
+                            <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px', color:'#fff'}}>User Information</h1>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}} onClick={handleLogout}>Logout</button>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'40px'}} onClick={goReservations}>Check Reservations</button>
                             <button style={{width:'27%', height:'10%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '7px', marginBottom:'20px'}} onClick={goPassword}>Change Password</button>

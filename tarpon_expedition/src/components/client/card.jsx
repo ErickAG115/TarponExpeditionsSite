@@ -113,16 +113,18 @@ export function Card() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '60%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Enter Credit/Debit card information</label>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Credit card number</label>
-                        <input value={creditCardNumber} type="text" id="credit-card-number" style={{ alignItems: 'center', textAlign: 'center', borderRadius: '5px', marginBottom:'20px', position: 'relative', top: '-20px', padding: '6px 12px'}} maxLength="19" onChange={handleCreditCardNumberChange}/>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top:'-5px'}}>Expiration Date (mm/yy)</label>
+                        <h1 tabIndex='0' style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px', marginBottom:'60px'}}>Enter Credit/Debit card information</h1>
+                        <label for='credit card number' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>Credit card number</label>
+                        <input value={creditCardNumber} type="text" id="credit card number" style={{ alignItems: 'center', textAlign: 'center', borderRadius: '5px', marginBottom:'20px', position: 'relative', top: '-20px', padding: '6px 12px'}} maxLength="19" onChange={handleCreditCardNumberChange}/>
+                        <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top:'-5px'}}>Expiration Date</label>
+                        <label for='credit-card-month' style={{fontFamily: 'lato', fontSize: '0px', position: 'relative', position: 'relative', top:'-5px'}}>month</label>
+                        <label for='credit-card-year' style={{fontFamily: 'lato', fontSize: '0px', position: 'relative', position: 'relative', top:'-5px'}}>year</label>
                         <div style={{height:'15%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto', position: 'relative', top:'-15px'}}>
                             <input value={month} type="text" id="credit-card-month" style={{ width:'14.3%', alignItems: 'center', textAlign: 'center', borderRadius: '5px', marginBottom:'20px', marginRight:'5px', position: 'relative', top: '-2px', padding: '6px 12px'}} maxLength="2" onChange={handleMonth}/>                        
                             <input value={year} type="text" id="credit-card-year" style={{ width:'14.3%', alignItems: 'center', textAlign: 'center', borderRadius: '5px', marginBottom:'20px', marginLeft:'5px', position: 'relative', top: '-2px', padding: '6px 12px'}} maxLength="2" onChange={handleYear}/>
                         </div>
-                        <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>CVV</label>
-                        <input value={CVV} type="text" id="Date" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', textAlign: 'center', position: 'relative', top: '-20px', padding: '6px 12px'}} maxLength="4" onChange={handleCVV}/>
+                        <label for="cvv" style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', position: 'relative', top: '-20px'}}>CVV</label>
+                        <input value={CVV} type="text" id="cvv" style={{ borderRadius: '5px', position: 'relative', marginBottom:'20px', textAlign: 'center', position: 'relative', top: '-20px', padding: '6px 12px'}} maxLength="4" onChange={handleCVV}/>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
                            <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goCheckout()}>Next</button>

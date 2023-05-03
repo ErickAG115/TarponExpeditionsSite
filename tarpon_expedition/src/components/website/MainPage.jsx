@@ -71,8 +71,8 @@ export function MainPage() {
                 </div>
 
                 <div class='content'>
-                    <h1 style={{fontSize: '76px'}}>Explore The Beauty of Fishing</h1>
-                    <p style={{fontSize: '30px'}}>Book now any of our exciting Fishing Tours</p>
+                    <h1 tabIndex='0' style={{fontSize: '76px'}}>Explore The Beauty of Fishing</h1>
+                    <p tabIndex='0' style={{fontSize: '30px'}}>Book now any of our exciting Fishing Tours</p>
                     <div>
                         <button onClick={handleBookNow} class='btn btn1'>BOOK NOW</button>
                     </div>

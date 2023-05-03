@@ -79,12 +79,12 @@ export function ClientReservations() {
         <Fragment>
             <div className='banner'>
                 <button style={{background:'transparent',border:'none'}}>
-                    <img onClick={handleMenu} src={require('../website/icons8-go-back-64.png')} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
+                    <img onClick={handleMenu} src={require('../website/icons8-go-back-64.png')} alt={'Back button'} style={{padding:'5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft:'20px'}}/>
                 </button>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
                     <div style={{float: 'right', width: '90%', height:'110%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                         <div style={{backgroundColor: '#D2D7DB', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px',backdropFilter: 'blur(15px)',border: '2px solid rgba(255,255,255,.5)',boxShadow: '0 0 30px rgba(0,0,0,.5)'}}>
-                            <label style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px'}}>My reservations</label>
+                            <h1 style={{fontFamily: 'lato', fontSize: '40px', fontWeight:'bold', marginBottom:'60px'}}>My reservations</h1>
                             <table className="table" style={{ fontFamily: 'Lato', border: '1px solid black', fontSize: '20px'}}>
                                 <thead>
                                     <tr>
@@ -105,9 +105,9 @@ export function ClientReservations() {
                                     <td>{(reservation.start).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                                     <td>{(reservation.end).toDate().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</td>
                                     <td>${reservation.Price}</td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goDetails(reservation.id)}>Details
+                                    <td><button aria-label={`View the details of your reservation for the tour ${reservation.Tour}`} style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#24AFC1', border: 'none', borderRadius: '7px'}} onClick={()=>goDetails(reservation.id)}>Details
                                     </button></td>
-                                    <td><button style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateReservation(reservation.id)}>Cancel
+                                    <td><button aria-label={`Eliminate your reservation for the tour ${reservation.Tour}`} style={{color:'white',width:'100%', fontFamily: 'lato', backgroundColor:'#F73910', border: 'none', borderRadius: '7px'}} onClick={()=>eliminateReservation(reservation.id)}>Cancel
                                     </button></td>
                                 </tr>
                                 ))}

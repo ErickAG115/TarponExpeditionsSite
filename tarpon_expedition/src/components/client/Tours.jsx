@@ -100,11 +100,11 @@ export function Tours() {
                                     <img src={tours.Image} />
                                 </div>
                                 <div class='flip-card-back'>
-                                    <h1>{tours.Name}</h1>
-                                    <h2 style={{fontSize: '20px'}}>Type of Tour: {tours.Type}</h2>
-                                    <h2 style={{fontSize: '20px'}}>Place: {tours.Place}</h2>
-                                    <h2 style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
-                                    <h2 style={{fontSize: '20px'}}>Price: ${tours.Price}</h2>
+                                    <h1 tabIndex='0'>{tours.Name}</h1>
+                                    <h2 tabIndex='0' style={{fontSize: '20px'}}>Type of Tour: {tours.Type}</h2>
+                                    <h2 tabIndex='0' style={{fontSize: '20px'}}>Place: {tours.Place}</h2>
+                                    <h2 tabIndex='0' style={{fontSize: '18px'}}>Techniques: {tours.Techniques && tours.Techniques.join(', ')}</h2>
+                                    <h2 tabIndex='0' style={{fontSize: '20px'}}>Price: ${tours.Price}</h2>
                                     <button onClick={() => handleSeeMore(tours.id,tours.Name,tours.Image,tours.Place,tours.Type,
                                         tours.Techniques,tours.Price,tours.Desc)} class='btnT btnT1'>See More</button>
                                 </div>

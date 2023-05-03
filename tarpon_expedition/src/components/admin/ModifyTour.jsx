@@ -152,24 +152,24 @@ export function ModifyTour() {
             <div style={{backgroundColor: '#D2D7DB', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh',}}>
                 <div style={{float: 'right', width: '85%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
                     <div style={{backgroundColor: 'white', height:'80%', width:'80%', display: 'flex', flexDirection: 'column', overflow: 'auto', alignItems: 'center', justifyContent: 'center', borderRadius: '10px'}}>
-                        <label style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Registration</label>
+                        <h1 style={{fontFamily: 'lato', fontSize: '30px', fontWeight:'bold', marginTop:'20px'}}>Tour Modification</h1>
                         <div style={{width: '100%', height:'100%'}}>
                         <div style={{float: 'left', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-79px'}}>Name</label>
+                                <label for='Tour Name' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-79px'}}>Name</label>
                                 <input type="text" id="Tour Name" value={tourName} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setTourName(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Tour Type</label>
+                                <label for='Tour Type' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Tour Type</label>
                                 <input type="text" id="Tour Type" value={type} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setType(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Place</label>
+                                <label for='Place' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-62px'}}>Place</label>
                                 <input type="text" id="Place" value={place} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setPlace(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-82px'}}>Price</label>
+                                <label for='Price' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-82px'}}>Price</label>
                                 <input type="number" id="Price" value={price} style={{ borderRadius: '5px', marginRight:'10px'}} onChange={(event)=>setPrice(event.target.value)}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-57px'}}>Description</label>
-                                <textarea id="Password" value={description} style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} onChange={(event)=>setDescription(event.target.value)}/>
+                                <label for='Description' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-57px'}}>Description</label>
+                                <textarea id="Description" value={description} style={{ width: '50%', height:'40%', borderRadius: '5px', border: '2px solid #444', position: 'relative', left: '27px'}} onChange={(event)=>setDescription(event.target.value)}/>
                         </div>
                         <div style={{float: 'right', width: '50%', height:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', position: 'relative', top: '-52px'}}>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
-                                <input type="file" id="Password" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event) => setFile(event.target.files[0])}/>
-                                <label style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-46px', marginTop:'10px'}}>Techniques</label>
+                                <label for='picture' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-63px'}}>Picture</label>
+                                <input type="file" id="picture" style={{ borderRadius: '5px', marginRight:'10px', position: 'relative', left: '50px'}} onChange={(event) => setFile(event.target.files[0])}/>
+                                <label tabIndex='0' style={{fontFamily: 'lato', fontSize: '20px', position: 'relative', left: '-46px', marginTop:'10px'}}>Techniques</label>
                                 <div style={{display:'flex', flexDirection:'column'}}>
                                 <div style={{position: 'relative', left:'-40px'}}>
                                 <input type='checkbox' id="FlyFishing" name='FlyFishing' value='FlyFishing' style={{ borderRadius: '5px', position: 'relative'}} onChange={handleCheckboxChange}/>
@@ -191,8 +191,9 @@ export function ModifyTour() {
                         </div>
                         </div>
                         <div style={{height:'20%', width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'auto'}}>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => uploadTour()}>Modify</button>
-                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => goBack()}>Back</button>
+                        
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginRight:'10px'}} onClick={() => goBack()}>Back</button>
+                           <button style={{width:'30%', height:'40%', fontSize: '25px', fontFamily: 'lato', backgroundColor:'#24AFC1',color: 'white', border: 'none', borderRadius: '10px', marginLeft:'10px'}} onClick={() => uploadTour()}>Modify</button>
                         </div>
                     </div>
                 </div>
