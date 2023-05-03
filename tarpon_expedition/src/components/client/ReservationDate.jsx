@@ -44,9 +44,10 @@ export function ReservationDate() {
 
     //const tour = location.state.tour;
     //const tour = 'tour name';
-
+    console.log('VER ACAAAA',datePicked, packagePicked, schedulePicked);
     const goToCompanions = () => {
-      if(datePicked == "" || packageChosen== "" || schedulePicked == ""){
+      //console.log('VER ACAAAA',datePicked, packageChosen, schedulePicked);
+      if(datePicked == "" || packagePicked == "" || schedulePicked == ""){
         alert("Make sure you picked a date, a package and a schedule");
       }
       else{
