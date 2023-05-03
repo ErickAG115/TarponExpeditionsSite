@@ -48,6 +48,7 @@ export function ClientReservations() {
         }
         console.log(reservation);
         await updateDoc(ReservationDOC, data);
+        alert('Your reservation was eliminated successfully');
         getReservations();
     }
 

@@ -36,7 +36,7 @@ export function AddSchedule() {
 
     const uploadSchedule = async () => {
         if(start=='' || end==''){
-            alert("You can't enter empty times");
+            alert("You must pick both start and finish times");
         }
         else{
             if(start>=end){
@@ -77,6 +77,7 @@ export function AddSchedule() {
                             Tour: TourName
                         }
                         await addDoc(schedulesCollectionRef, data);
+                        alert('The schedule was added successfully');
                         getSchedules();
                     }
                 }

@@ -136,7 +136,7 @@ export function Checkout() {
             start: dateStart
 
         };
-        alert('Your reservation was registered successfully, you will now be redirected to your reservations window');
+        alert('Your reservation was registered successfully, you will now be redirected to the tour catalogue window');
         addDoc(reservationsCollectionRef, data);
         navigate('/Tours', {state:{idUser: idUser, email: emailUser, firstName: firstName, lastName: lastName}});
     }

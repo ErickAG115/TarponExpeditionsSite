@@ -75,11 +75,11 @@ export function ChangePassword() {
     const changePassword = async () =>{
         const UserDOC = await getDoc(doc(db, "Users", idUser));
         if(currentPsswrd == "" || newPsswrd == "" || confirmPsswrd == ""){
-            alert("You can't leave any empty areas");
+            alert("You can't leave any empty information");
         }
         else{
             if((UserDOC.data().Password) != currentPsswrd){
-                alert("The current password must match your actual current password");
+                alert("The first password you entered doesn't match your current password");
             }
             else{
                 if(newPsswrd != currentPsswrd){
